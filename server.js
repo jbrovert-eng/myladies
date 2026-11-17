@@ -1,6 +1,6 @@
 /**
  * Myladies Ecquedecques - Serveur Backend Express & API REST
- * Gestion des membres, des candidatures d'exclusivité métier et des événements
+ * Compatible Déploiement Local & Vercel Serverless
  */
 
 const express = require('express');
@@ -12,43 +12,62 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DB_FILE = path.join(__dirname, 'data', 'db.json');
 
+// Mémoire tampon pour environnement Vercel Serverless
+let memoryDB = null;
+
 // Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Servir les fichiers statiques (site public + logo)
-app.use(express.static(__dirname));
+// Servir les dossiers statiques
+app.use(express.static(path.join(__dirname)));
+app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
+app.use('/logo', express.static(path.join(__dirname, 'logo')));
+app.use('/admin', express.static(path.join(__dirname, 'admin')));
 
 // Fonctions d'accès aux données persistantes
 function readDB() {
+  if (memoryDB) return memoryDB;
   try {
-    if (!fs.existsSync(DB_FILE)) {
-      return { members: [], applications: [], events: [] };
+    if (fs.existsSync(DB_FILE)) {
+      const raw = fs.readFileSync(DB_FILE, 'utf-8');
+      memoryDB = JSON.parse(raw);
+      return memoryDB;
     }
-    const raw = fs.readFileSync(DB_FILE, 'utf-8');
-    return JSON.parse(raw);
   } catch (err) {
     console.error('Erreur lecture DB:', err);
-    return { members: [], applications: [], events: [] };
   }
+  memoryDB = { members: [], applications: [], events: [] };
+  return memoryDB;
 }
 
 function writeDB(data) {
+  memoryDB = data;
   try {
     fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
     return true;
   } catch (err) {
-    console.error('Erreur écriture DB:', err);
-    return false;
+    // Sur Vercel, le filesystem est en lecture seule, le stockage en mémoire reste actif
+    console.warn('Environnement serverless en lecture seule, sauvegarde mémoire active.');
+    return true;
   }
 }
+
+// Routes Statiques explicites pour éviter "Cannot GET /"
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+});
 
 /* ==========================================================================
    ROUTES API - ANNUAIRE DES MEMBRES
    ========================================================================== */
 
-// 1. Lister tous les membres (avec filtre catégorie et recherche optionnels)
 app.get('/api/members', (req, res) => {
   const db = readDB();
   let list = db.members || [];
@@ -76,7 +95,6 @@ app.get('/api/members', (req, res) => {
   });
 });
 
-// 2. Détail d'une membre par ID
 app.get('/api/members/:id', (req, res) => {
   const db = readDB();
   const id = parseInt(req.params.id, 10);
@@ -89,7 +107,6 @@ app.get('/api/members/:id', (req, res) => {
   res.json({ success: true, member });
 });
 
-// 3. Ajouter une nouvelle membre (avec vérification d'exclusivité métier)
 app.post('/api/members', (req, res) => {
   const db = readDB();
   const {
@@ -104,7 +121,6 @@ app.post('/api/members', (req, res) => {
     });
   }
 
-  // Vérification de collision de métier
   const existingRole = (db.members || []).find(
     m => m.role.toLowerCase().trim() === role.toLowerCase().trim()
   );
@@ -144,7 +160,6 @@ app.post('/api/members', (req, res) => {
   });
 });
 
-// 4. Modifier une membre
 app.put('/api/members/:id', (req, res) => {
   const db = readDB();
   const id = parseInt(req.params.id, 10);
@@ -158,7 +173,7 @@ app.put('/api/members/:id', (req, res) => {
   const updated = {
     ...current,
     ...req.body,
-    id: current.id // Empêcher la modification de l'ID
+    id: current.id
   };
 
   db.members[index] = updated;
@@ -171,7 +186,6 @@ app.put('/api/members/:id', (req, res) => {
   });
 });
 
-// 5. Supprimer une membre
 app.delete('/api/members/:id', (req, res) => {
   const db = readDB();
   const id = parseInt(req.params.id, 10);
@@ -190,7 +204,6 @@ app.delete('/api/members/:id', (req, res) => {
    ROUTES API - CANDIDATURES / RÉUNIONS DÉCOUVERTE
    ========================================================================== */
 
-// 1. Soumettre une nouvelle candidature depuis le formulaire vitrine
 app.post('/api/applications', (req, res) => {
   const db = readDB();
   const { firstName, lastName, companyName, profession, email, phone, city, meetingChoice, message } = req.body;
@@ -202,7 +215,6 @@ app.post('/api/applications', (req, res) => {
     });
   }
 
-  // Vérifier si le secteur est actuellement déjà représenté
   const lowerProf = profession.toLowerCase();
   const conflict = (db.members || []).find(m =>
     m.role.toLowerCase().includes(lowerProf) || lowerProf.includes(m.role.toLowerCase())
@@ -222,7 +234,7 @@ app.post('/api/applications', (req, res) => {
     city: city ? city.trim() : 'Pas-de-Calais',
     meetingChoice: meetingChoice || 'next-thursday',
     message: message ? message.trim() : '',
-    status: 'nouveau', // 'nouveau' | 'étudié' | 'validé' | 'refusé'
+    status: 'nouveau',
     exclusivityAlert: conflict ? `Attention : métier déjà représenté par ${conflict.name} (${conflict.company})` : 'Métier apparemment libre !'
   };
 
@@ -239,7 +251,6 @@ app.post('/api/applications', (req, res) => {
   });
 });
 
-// 2. Obtenir la liste de toutes les candidatures (pour le back-office)
 app.get('/api/applications', (req, res) => {
   const db = readDB();
   res.json({
@@ -249,7 +260,6 @@ app.get('/api/applications', (req, res) => {
   });
 });
 
-// 3. Modifier le statut d'une candidature
 app.patch('/api/applications/:id', (req, res) => {
   const db = readDB();
   const id = parseInt(req.params.id, 10);
@@ -274,7 +284,6 @@ app.patch('/api/applications/:id', (req, res) => {
   });
 });
 
-// 4. Supprimer une candidature
 app.delete('/api/applications/:id', (req, res) => {
   const db = readDB();
   const id = parseInt(req.params.id, 10);
@@ -320,12 +329,7 @@ app.get('/api/stats', (req, res) => {
   });
 });
 
-// Route d'accès au Back-Office d'administration
-app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'admin', 'index.html'));
-});
-
-// Démarrage du serveur si exécuté directement (local)
+// Démarrage du serveur si exécuté en local
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`=======================================================`);
