@@ -49,7 +49,7 @@
       <div class="flex items-center gap-3">
         <a href="/" target="_blank" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-cream transition flex items-center gap-1.5 border border-gold/30">
           <svg class="w-3.5 h-3.5 text-gold-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-          <span>Voir le site vitrine</span>
+          <span>Voir le site public</span>
         </a>
         <button onclick="refreshData()" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-gold hover:bg-gold-light text-stone-900 transition flex items-center gap-1">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
@@ -119,8 +119,8 @@
 
         <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-sm flex items-center justify-between">
           <div>
-            <div class="text-xs uppercase font-bold text-stone-500 tracking-wider">Statut Exclusivité</div>
-            <div class="font-serif text-xl font-bold text-emerald-700 mt-1">100% Respecté</div>
+            <div class="text-xs uppercase font-bold text-stone-500 tracking-wider">Exclusivité Métier</div>
+            <div class="font-serif text-xl font-bold text-emerald-700 mt-1">100% Respectée</div>
             <div class="text-[11px] text-stone-400 mt-0.5">Zéro concurrence interne</div>
           </div>
           <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl">
@@ -181,86 +181,205 @@
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 class="font-serif text-2xl font-bold text-bordeaux">Annuaire Officiel des Membres</h2>
-          <p class="text-xs text-stone-500">Ajoutez, modifiez ou retirez les cheffes d'entreprise du club.</p>
+          <p class="text-xs text-stone-500">Cliquez sur "Modifier" pour mettre à jour une fiche existante ou sur le bouton pour en créer une nouvelle.</p>
         </div>
-        <button onclick="toggleAddMemberForm()" class="px-4 py-2.5 rounded-xl bg-bordeaux hover:bg-bordeaux-dark text-cream font-bold text-xs uppercase tracking-wider transition shadow flex items-center gap-2">
-          <span>+ Ajouter une nouvelle membre</span>
+        <button onclick="openCreateMemberModal()" class="px-5 py-2.5 rounded-xl bg-bordeaux hover:bg-bordeaux-dark text-cream font-bold text-xs uppercase tracking-wider transition shadow flex items-center gap-2 border border-gold/40">
+          <span>+ Créer un nouveau profil membre</span>
         </button>
       </div>
 
-      <!-- Formulaire d'ajout rapide (repliable) -->
-      <div id="addMemberFormContainer" class="hidden bg-white rounded-2xl border border-gold/40 shadow-lg p-6 space-y-4">
-        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
-          <h3 class="font-serif text-lg font-bold text-bordeaux">Ajouter une nouvelle membre au club</h3>
-          <button onclick="toggleAddMemberForm()" class="text-stone-400 hover:text-stone-600">✕</button>
-        </div>
-
-        <form id="createMemberForm" onsubmit="submitNewMember(event)" class="space-y-4 text-xs">
-          <div class="grid sm:grid-cols-3 gap-4">
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Nom & Prénom *</label>
-              <input type="text" id="mName" required class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: Valérie Dumont">
-            </div>
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Entreprise *</label>
-              <input type="text" id="mCompany" required class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: L'Atelier Floral d'Hélant">
-            </div>
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Métier / Rôle exclusif *</label>
-              <input type="text" id="mRole" required class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: Fleuriste Scénographe">
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-3 gap-4">
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Catégorie *</label>
-              <select id="mCategory" required class="w-full p-2.5 rounded-lg border border-stone-300 bg-white">
-                <option value="Artisanat">Artisanat</option>
-                <option value="Bien-être">Bien-être</option>
-                <option value="Services">Services</option>
-                <option value="Commerce">Commerce</option>
-              </select>
-            </div>
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Ville (Pas-de-Calais) *</label>
-              <input type="text" id="mCity" required class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: Ecquedecques">
-            </div>
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Badge d'honneur</label>
-              <input type="text" id="mBadge" class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: Artisan d'Art">
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Téléphone</label>
-              <input type="text" id="mPhone" class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="03 21 00 00 00">
-            </div>
-            <div>
-              <label class="block font-semibold text-stone-700 mb-1">Email</label>
-              <input type="email" id="mEmail" class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="contact@entreprise.fr">
-            </div>
-          </div>
-
-          <div>
-            <label class="block font-semibold text-stone-700 mb-1">Courte description pour l'annuaire *</label>
-            <textarea id="mShortDesc" required rows="2" class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Présentation synthétique du savoir-faire..."></textarea>
-          </div>
-
-          <div class="flex justify-end gap-3 pt-2">
-            <button type="button" onclick="toggleAddMemberForm()" class="px-4 py-2 rounded-lg bg-stone-100 text-stone-700 font-semibold">Annuler</button>
-            <button type="submit" class="px-5 py-2 rounded-lg bg-bordeaux text-cream font-bold">Enregistrer la membre</button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Grille des membres existants -->
+      <!-- Grille des membres existants avec boutons Modifier et Supprimer -->
       <div id="adminMembersGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Rendu dynamique -->
       </div>
     </section>
 
   </main>
+
+  <!-- ========================================================================
+       MODALE / TIROIR COMPLET D'ÉDITION ET CRÉATION DE PROFIL MEMBRE
+       ======================================================================== -->
+  <div id="memberEditorModal" class="hidden fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+    <div onclick="closeMemberEditorModal()" class="fixed inset-0 modal-backdrop transition-opacity"></div>
+    <div class="min-h-screen px-4 text-center flex items-center justify-center py-8">
+      <div class="inline-block w-full max-w-4xl bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all align-middle relative border border-gold/50">
+        
+        <!-- En-tête de la modale d'édition -->
+        <div class="bg-gradient-to-r from-bordeaux via-bordeaux-dark to-stone-900 text-cream p-6 flex items-center justify-between border-b border-gold/40">
+          <div>
+            <span class="text-[11px] uppercase tracking-widest text-gold-light font-bold">Éditeur de Fiche Membre</span>
+            <h3 id="editorModalTitle" class="font-serif text-2xl font-bold text-cream">Modifier le profil de l'entrepreneuse</h3>
+          </div>
+          <button onclick="closeMemberEditorModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-cream flex items-center justify-center transition">
+            ✕
+          </button>
+        </div>
+
+        <!-- Formulaire d'édition riche -->
+        <form id="memberFullForm" onsubmit="saveMemberFromEditor(event)" class="p-6 sm:p-8 space-y-6 max-h-[75vh] overflow-y-auto text-xs sm:text-sm">
+          <input type="hidden" id="editMemberId" value="">
+
+          <!-- Section 1 : Identité & Rôle Exclusif -->
+          <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-4">
+            <h4 class="font-serif text-base font-bold text-bordeaux flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-gold"></span>
+              1. Identité, Entreprise & Exclusivité Métier
+            </h4>
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Nom & Prénom *</label>
+                <input type="text" id="editName" required class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="Ex: Valérie Dumont">
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Nom de l'entreprise *</label>
+                <input type="text" id="editCompany" required class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="Ex: L'Atelier Floral d'Hélant">
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Métier / Rôle exclusif *</label>
+                <input type="text" id="editRole" required class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="Ex: Artisan Fleuriste & Scénographe">
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Catégorie *</label>
+                <select id="editCategory" required class="w-full p-2.5 rounded-xl border border-stone-300 bg-white focus:border-gold outline-none">
+                  <option value="Artisanat">Artisanat</option>
+                  <option value="Bien-être">Bien-être</option>
+                  <option value="Services">Services</option>
+                  <option value="Commerce">Commerce</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Ville (Pas-de-Calais) *</label>
+                <input type="text" id="editCity" required class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="Ex: Ecquedecques">
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Badge d'honneur *</label>
+                <input type="text" id="editBadge" required class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="Ex: Artisan d'Art, Santé Naturelle...">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2 : Photos & Visuels élégants -->
+          <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-4">
+            <h4 class="font-serif text-base font-bold text-peacock flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-gold"></span>
+              2. Photos de Profil & Couverture
+            </h4>
+            <div class="grid sm:grid-cols-2 gap-4 items-start">
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Photo de profil (Portrait URL) *</label>
+                <input type="url" id="editImage" required oninput="document.getElementById('previewAvatar').src=this.value" class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="https://...">
+                <div class="flex items-center gap-3 mt-2">
+                  <img id="previewAvatar" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150" class="w-12 h-12 rounded-xl object-cover border border-gold" alt="Avatar">
+                  <span class="text-[11px] text-stone-500">Aperçu immédiat</span>
+                </div>
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Photo de couverture (Bannière) *</label>
+                <input type="url" id="editCoverImage" required oninput="document.getElementById('previewCover').src=this.value" class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="https://...">
+                <div class="flex items-center gap-3 mt-2">
+                  <img id="previewCover" src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=300" class="w-24 h-12 rounded-xl object-cover border border-stone-300" alt="Cover">
+                  <span class="text-[11px] text-stone-500">Aperçu bannière</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3 : Devise, Description courte & Bio complète -->
+          <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-4">
+            <h4 class="font-serif text-base font-bold text-bordeaux flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-gold"></span>
+              3. Devise & Histoire de l'Entrepreneuse
+            </h4>
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Devise / Citation inspirante</label>
+              <input type="text" id="editMotto" class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="Ex: La poésie des fleurs pour donner une âme inoubliable à chaque instant.">
+            </div>
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Description courte (Affichée sur la carte de l'annuaire) *</label>
+              <textarea id="editShortDesc" required rows="2" class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="2 à 3 lignes résumant l'activité..."></textarea>
+            </div>
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Histoire détaillée & Parcours ("À propos" dans la modale) *</label>
+              <textarea id="editFullDesc" required rows="3" class="w-full p-2.5 rounded-xl border border-stone-300 focus:border-gold outline-none" placeholder="Parcours, expérience, passion et vision de l'adhérente..."></textarea>
+            </div>
+          </div>
+
+          <!-- Section 4 : Les 4 Prestations Phares -->
+          <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-4">
+            <h4 class="font-serif text-base font-bold text-peacock flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-gold"></span>
+              4. Prestations & Savoir-Faire (Puces avec coches dorées)
+            </h4>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block font-semibold text-stone-600 text-xs mb-1">Prestation 1</label>
+                <input type="text" id="editService1" class="w-full p-2.5 rounded-xl border border-stone-300 outline-none" placeholder="Ex: Scénographie florale événementielle">
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-600 text-xs mb-1">Prestation 2</label>
+                <input type="text" id="editService2" class="w-full p-2.5 rounded-xl border border-stone-300 outline-none" placeholder="Ex: Abonnements floraux pour commerces">
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-600 text-xs mb-1">Prestation 3</label>
+                <input type="text" id="editService3" class="w-full p-2.5 rounded-xl border border-stone-300 outline-none" placeholder="Ex: Ateliers d'art floral & team-building">
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-600 text-xs mb-1">Prestation 4</label>
+                <input type="text" id="editService4" class="w-full p-2.5 rounded-xl border border-stone-300 outline-none" placeholder="Ex: Compositions végétales sur-mesure">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5 : Coordonnées directes & Réseaux sociaux -->
+          <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200 space-y-4">
+            <h4 class="font-serif text-base font-bold text-stone-800 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-gold"></span>
+              5. Coordonnées & Réseaux Sociaux
+            </h4>
+            <div class="grid sm:grid-cols-3 gap-3">
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Téléphone pro</label>
+                <input type="text" id="editPhone" class="w-full p-2.5 rounded-xl border border-stone-300 outline-none" placeholder="03 21 00 00 00">
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Email pro</label>
+                <input type="email" id="editEmail" class="w-full p-2.5 rounded-xl border border-stone-300 outline-none" placeholder="contact@domaine.fr">
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Site Web officiel</label>
+                <input type="url" id="editWebsite" class="w-full p-2.5 rounded-xl border border-stone-300 outline-none" placeholder="https://...">
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Compte Instagram</label>
+                <input type="text" id="editInstagram" class="w-full p-2.5 rounded-xl border border-stone-300 outline-none" placeholder="@moncompte">
+              </div>
+              <div>
+                <label class="block font-semibold text-stone-700 mb-1">Profil LinkedIn</label>
+                <input type="text" id="editLinkedin" class="w-full p-2.5 rounded-xl border border-stone-300 outline-none" placeholder="prenom-nom">
+              </div>
+            </div>
+          </div>
+
+          <!-- Boutons de soumission -->
+          <div class="flex items-center justify-end gap-3 pt-4 border-t border-stone-200">
+            <button type="button" onclick="closeMemberEditorModal()" class="px-5 py-2.5 rounded-xl bg-stone-200 hover:bg-stone-300 text-stone-700 font-bold uppercase tracking-wider text-xs">
+              Annuler
+            </button>
+            <button type="submit" class="px-6 py-2.5 rounded-xl bg-bordeaux hover:bg-bordeaux-dark text-cream font-bold uppercase tracking-wider text-xs shadow-lg border border-gold/40">
+              Enregistrer la fiche membre
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
 
   <footer class="bg-white border-t border-stone-200 py-4 text-center text-xs text-stone-500">
     Back-Office Myladies Ecquedecques • Système d'administration et exclusivité métier
@@ -426,58 +545,148 @@
       if (!grid) return;
 
       grid.innerHTML = appData.members.map(m => `
-        <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm space-y-3 relative group">
-          <div class="flex items-center gap-3">
-            <img src="${m.image}" class="w-12 h-12 rounded-xl object-cover border border-gold" alt="${m.name}">
-            <div>
-              <h4 class="font-bold text-stone-900">${m.name}</h4>
-              <p class="text-xs text-bordeaux font-semibold">${m.company}</p>
+        <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm space-y-4 relative group flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <img src="${m.image}" class="w-14 h-14 rounded-2xl object-cover border-2 border-gold shadow-sm" alt="${m.name}">
+                <div>
+                  <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-gold/15 text-stone-800">
+                    ${m.badge || 'Membre'}
+                  </span>
+                  <h4 class="font-bold text-base text-stone-900 mt-1">${m.name}</h4>
+                  <p class="text-xs text-bordeaux font-semibold">${m.company}</p>
+                </div>
+              </div>
             </div>
+
+            <div class="text-xs text-stone-600 space-y-1 bg-stone-50 p-3 rounded-xl">
+              <div><strong>Métier exclusif :</strong> <span class="text-stone-900 font-medium">${m.role}</span></div>
+              <div><strong>Catégorie :</strong> ${m.category} • <strong>Ville :</strong> ${m.city}</div>
+              <div><strong>Téléphone :</strong> ${m.phone || 'Non renseigné'}</div>
+            </div>
+
+            <p class="text-xs text-stone-500 italic line-clamp-2">
+              "${m.motto || m.shortDesc}"
+            </p>
           </div>
-          <div class="text-xs text-stone-600">
-            <div><strong>Rôle exclusif :</strong> ${m.role}</div>
-            <div><strong>Ville :</strong> ${m.city} (${m.category})</div>
-          </div>
-          <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-xs">
-            <span class="text-stone-400">ID #${m.id}</span>
-            <button onclick="deleteMember(${m.id})" class="text-rose-600 hover:text-rose-800 font-bold">
-              Retirer du club
+
+          <!-- Actions Modifier / Supprimer -->
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between gap-2">
+            <button onclick="openEditMemberModal(${m.id})" class="px-3 py-1.5 rounded-lg bg-bordeaux/10 hover:bg-bordeaux text-bordeaux hover:text-white font-bold text-xs transition flex items-center gap-1.5">
+              <span>✏️ Modifier le profil</span>
+            </button>
+            <button onclick="deleteMember(${m.id})" class="text-rose-600 hover:text-rose-800 font-semibold text-xs">
+              Supprimer
             </button>
           </div>
         </div>
       `).join('');
     }
 
-    function toggleAddMemberForm() {
-      const el = document.getElementById('addMemberFormContainer');
-      el.classList.toggle('hidden');
+    // Gestion du tiroir d'édition / création
+    function closeMemberEditorModal() {
+      document.getElementById('memberEditorModal').classList.add('hidden');
     }
 
-    async function submitNewMember(e) {
+    function openCreateMemberModal() {
+      document.getElementById('memberFullForm').reset();
+      document.getElementById('editMemberId').value = '';
+      document.getElementById('editorModalTitle').textContent = 'Créer un nouveau profil d\'entrepreneuse';
+      
+      // Valeurs par défaut élégantes
+      document.getElementById('editImage').value = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';
+      document.getElementById('editCoverImage').value = 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80';
+      document.getElementById('previewAvatar').src = document.getElementById('editImage').value;
+      document.getElementById('previewCover').src = document.getElementById('editCoverImage').value;
+      document.getElementById('editBadge').value = 'Membre Officielle';
+      document.getElementById('editCity').value = 'Ecquedecques';
+
+      document.getElementById('memberEditorModal').classList.remove('hidden');
+    }
+
+    function openEditMemberModal(id) {
+      const member = appData.members.find(m => m.id === id);
+      if (!member) return;
+
+      document.getElementById('editMemberId').value = member.id;
+      document.getElementById('editorModalTitle').textContent = `Modifier la fiche de ${member.name}`;
+
+      document.getElementById('editName').value = member.name || '';
+      document.getElementById('editCompany').value = member.company || '';
+      document.getElementById('editRole').value = member.role || '';
+      document.getElementById('editCategory').value = member.category || 'Services';
+      document.getElementById('editCity').value = member.city || 'Pas-de-Calais';
+      document.getElementById('editBadge').value = member.badge || 'Membre Officielle';
+      document.getElementById('editImage').value = member.image || '';
+      document.getElementById('editCoverImage').value = member.coverImage || '';
+      document.getElementById('previewAvatar').src = member.image || '';
+      document.getElementById('previewCover').src = member.coverImage || '';
+      document.getElementById('editMotto').value = member.motto || '';
+      document.getElementById('editShortDesc').value = member.shortDesc || '';
+      document.getElementById('editFullDesc').value = member.fullDesc || '';
+
+      const serv = member.services || [];
+      document.getElementById('editService1').value = serv[0] || '';
+      document.getElementById('editService2').value = serv[1] || '';
+      document.getElementById('editService3').value = serv[2] || '';
+      document.getElementById('editService4').value = serv[3] || '';
+
+      document.getElementById('editPhone').value = member.phone || '';
+      document.getElementById('editEmail').value = member.email || '';
+      document.getElementById('editWebsite').value = member.website || '';
+      document.getElementById('editInstagram').value = member.instagram || '';
+      document.getElementById('editLinkedin').value = member.linkedin || '';
+
+      document.getElementById('memberEditorModal').classList.remove('hidden');
+    }
+
+    async function saveMemberFromEditor(e) {
       e.preventDefault();
+      const idVal = document.getElementById('editMemberId').value;
+      const isEdit = Boolean(idVal);
+
+      const services = [
+        document.getElementById('editService1').value.trim(),
+        document.getElementById('editService2').value.trim(),
+        document.getElementById('editService3').value.trim(),
+        document.getElementById('editService4').value.trim()
+      ].filter(s => s.length > 0);
+
       const payload = {
-        name: document.getElementById('mName').value,
-        company: document.getElementById('mCompany').value,
-        role: document.getElementById('mRole').value,
-        category: document.getElementById('mCategory').value,
-        city: document.getElementById('mCity').value,
-        badge: document.getElementById('mBadge').value || 'Membre Officielle',
-        phone: document.getElementById('mPhone').value,
-        email: document.getElementById('mEmail').value,
-        shortDesc: document.getElementById('mShortDesc').value
+        name: document.getElementById('editName').value.trim(),
+        company: document.getElementById('editCompany').value.trim(),
+        role: document.getElementById('editRole').value.trim(),
+        category: document.getElementById('editCategory').value,
+        city: document.getElementById('editCity').value.trim(),
+        badge: document.getElementById('editBadge').value.trim(),
+        image: document.getElementById('editImage').value.trim(),
+        coverImage: document.getElementById('editCoverImage').value.trim(),
+        motto: document.getElementById('editMotto').value.trim(),
+        shortDesc: document.getElementById('editShortDesc').value.trim(),
+        fullDesc: document.getElementById('editFullDesc').value.trim(),
+        services: services,
+        phone: document.getElementById('editPhone').value.trim(),
+        email: document.getElementById('editEmail').value.trim(),
+        website: document.getElementById('editWebsite').value.trim(),
+        instagram: document.getElementById('editInstagram').value.trim(),
+        linkedin: document.getElementById('editLinkedin').value.trim()
       };
 
       try {
-        const res = await fetch('/api/members', {
-          method: 'POST',
+        const url = isEdit ? `/api/members/${idVal}` : '/api/members';
+        const method = isEdit ? 'PUT' : 'POST';
+
+        const res = await fetch(url, {
+          method: method,
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
+
         const data = await res.json();
         if (data.success) {
-          alert('Membre enregistrée avec succès !');
-          document.getElementById('createMemberForm').reset();
-          toggleAddMemberForm();
+          alert(isEdit ? 'Fiche membre mise à jour avec succès !' : 'Nouveau profil créé avec succès !');
+          closeMemberEditorModal();
           refreshData();
         } else {
           alert(data.message || 'Erreur lors de l\'enregistrement');

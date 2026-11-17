@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myladies Ecquedecques | Espace Membre - Mettre à jour mon profil</title>
+  
+  <link rel="icon" type="image/png" href="logo/logo.png">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: { DEFAULT: '#F7F3EE', light: '#FDFBF8' },
+            bordeaux: { DEFAULT: '#7B1E26', dark: '#4D1016', deep: '#320A0E' },
+            gold: { DEFAULT: '#C59B27', light: '#E3BC4C' },
+            peacock: { DEFAULT: '#1D6F72' }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', '-apple-system', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-cream font-sans text-stone-800 antialiased min-h-screen flex flex-col cabaret-pattern">
+
+  <!-- En-tête -->
+  <header class="bg-bordeaux text-cream border-b border-gold/40 shadow-lg sticky top-0 z-40 py-3">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-10 h-12 p-1 bg-white rounded-lg border border-gold flex items-center justify-center">
+          <img src="logo/logo.png" alt="Myladies Logo" class="w-full h-full object-contain">
+        </div>
+        <div>
+          <h1 class="font-serif font-bold text-lg text-cream">Myladies Ecquedecques</h1>
+          <span class="text-[10px] uppercase tracking-widest text-gold-light font-bold">Espace Adhérente Privilège</span>
+        </div>
+      </a>
+
+      <a href="/" class="text-xs font-semibold px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-cream transition border border-gold/30">
+        ← Retour au site vitrine
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-8">
+
+    <!-- Titre de l'espace -->
+    <div class="text-center max-w-2xl mx-auto space-y-2">
+      <span class="px-3 py-1 rounded-full badge-bordeaux text-xs font-bold uppercase tracking-wider">
+        Mon Profil d'Entrepreneuse
+      </span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-bordeaux-dark">
+        Mettre à jour ma fiche dans l'annuaire
+      </h2>
+      <p class="text-stone-600 text-sm">
+        Actualisez vos prestations, vos coordonnées, votre photo de profil ou votre devise pour les prochaines ventes privées et recommandations d'affaires.
+      </p>
+    </div>
+
+    <!-- Étape 1 : Sélectionner ma fiche -->
+    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gold/40 shadow-md space-y-4">
+      <label for="selectMyProfile" class="block font-serif text-lg font-bold text-stone-900">
+        1. Choisissez votre nom dans la liste des membres :
+      </label>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <select id="selectMyProfile" onchange="loadSelectedProfile(this.value)" class="flex-1 p-3 rounded-xl border border-stone-300 bg-white font-medium text-sm focus:border-gold outline-none">
+          <option value="">-- Sélectionnez votre profil --</option>
+        </select>
+        <button type="button" onclick="loadSelectedProfile(document.getElementById('selectMyProfile').value)" class="px-6 py-3 rounded-xl bg-bordeaux text-cream font-bold text-xs uppercase tracking-wider hover:bg-bordeaux-dark transition">
+          Charger ma fiche
+        </button>
+      </div>
+    </div>
+
+    <!-- Message de confirmation -->
+    <div id="saveFeedback" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-sm font-semibold flex items-center gap-2">
+      <svg class="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+      <span>Votre fiche a été mise à jour avec succès dans l'annuaire !</span>
+    </div>
+
+    <!-- Formulaire d'édition de la membre -->
+    <form id="memberSelfEditForm" onsubmit="submitSelfEdit(event)" class="hidden bg-white rounded-3xl p-6 sm:p-10 border border-gold/40 shadow-xl space-y-8">
+      <input type="hidden" id="selfMemberId">
+
+      <!-- Aperçu en direct -->
+      <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 flex items-center gap-4">
+        <img id="selfPreviewAvatar" src="" class="w-16 h-16 rounded-2xl object-cover border-2 border-gold shadow">
+        <div>
+          <h3 id="selfDisplayTitle" class="font-serif text-xl font-bold text-stone-900"></h3>
+          <p id="selfDisplayCompany" class="text-xs text-bordeaux font-bold"></p>
+          <span id="selfDisplayBadge" class="inline-block mt-1 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-gold/15 text-stone-800"></span>
+        </div>
+      </div>
+
+      <!-- Coordonnées & Téléphone -->
+      <div class="space-y-4">
+        <h4 class="font-serif text-base font-bold text-bordeaux border-b border-stone-200 pb-2">
+          Coordonnées directes (Visibles sur votre fiche publique)
+        </h4>
+        <div class="grid sm:grid-cols-3 gap-4 text-xs">
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Téléphone de contact *</label>
+            <input type="text" id="selfPhone" required class="w-full p-2.5 rounded-xl border border-stone-300">
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Email professionnel *</label>
+            <input type="email" id="selfEmail" required class="w-full p-2.5 rounded-xl border border-stone-300">
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Site internet</label>
+            <input type="url" id="selfWebsite" class="w-full p-2.5 rounded-xl border border-stone-300" placeholder="https://...">
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 text-xs">
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Instagram (@votrecompte)</label>
+            <input type="text" id="selfInstagram" class="w-full p-2.5 rounded-xl border border-stone-300">
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">LinkedIn (nom ou lien)</label>
+            <input type="text" id="selfLinkedin" class="w-full p-2.5 rounded-xl border border-stone-300">
+          </div>
+        </div>
+      </div>
+
+      <!-- Photos -->
+      <div class="space-y-4">
+        <h4 class="font-serif text-base font-bold text-peacock border-b border-stone-200 pb-2">
+          Photos & Visuels
+        </h4>
+        <div class="grid sm:grid-cols-2 gap-4 text-xs">
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Lien de votre photo portrait</label>
+            <input type="url" id="selfImage" oninput="document.getElementById('selfPreviewAvatar').src=this.value" required class="w-full p-2.5 rounded-xl border border-stone-300">
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Lien de votre photo de couverture / bannière</label>
+            <input type="url" id="selfCoverImage" required class="w-full p-2.5 rounded-xl border border-stone-300">
+          </div>
+        </div>
+      </div>
+
+      <!-- Présentation & Devise -->
+      <div class="space-y-4">
+        <h4 class="font-serif text-base font-bold text-stone-900 border-b border-stone-200 pb-2">
+          Présentation & Histoire
+        </h4>
+        <div class="text-xs space-y-3">
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Votre devise ou phrase inspirante</label>
+            <input type="text" id="selfMotto" class="w-full p-2.5 rounded-xl border border-stone-300">
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Description courte (carte annuaire)</label>
+            <textarea id="selfShortDesc" rows="2" required class="w-full p-2.5 rounded-xl border border-stone-300"></textarea>
+          </div>
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Votre histoire & parcours complet ("À propos")</label>
+            <textarea id="selfFullDesc" rows="4" required class="w-full p-2.5 rounded-xl border border-stone-300"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prestations -->
+      <div class="space-y-4">
+        <h4 class="font-serif text-base font-bold text-bordeaux border-b border-stone-200 pb-2">
+          Vos 4 Prestations Phares (Affichées avec coches dorées)
+        </h4>
+        <div class="grid sm:grid-cols-2 gap-3 text-xs">
+          <input type="text" id="selfService1" class="p-2.5 rounded-xl border border-stone-300" placeholder="Prestation 1">
+          <input type="text" id="selfService2" class="p-2.5 rounded-xl border border-stone-300" placeholder="Prestation 2">
+          <input type="text" id="selfService3" class="p-2.5 rounded-xl border border-stone-300" placeholder="Prestation 3">
+          <input type="text" id="selfService4" class="p-2.5 rounded-xl border border-stone-300" placeholder="Prestation 4">
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-stone-200 flex justify-end">
+        <button type="submit" class="btn-shimmer px-8 py-3.5 rounded-full gold-gradient-bg text-bordeaux-dark font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg hover:scale-105 transition-all">
+          Enregistrer mes modifications
+        </button>
+      </div>
+
+    </form>
+
+  </main>
+
+  <footer class="bg-white border-t border-stone-200 py-6 text-center text-xs text-stone-500">
+    Espace Adhérente Myladies Ecquedecques • Réseau local de femmes entrepreneures
+  </footer>
+
+  <script>
+    let membersList = [];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await fetch('/api/members');
+        const data = await res.json();
+        membersList = data.members || [];
+
+        const select = document.getElementById('selectMyProfile');
+        select.innerHTML = '<option value="">-- Choisissez votre profil dans la liste --</option>' + 
+          membersList.map(m => `<option value="${m.id}">${m.name} - ${m.company} (${m.role})</option>`).join('');
+      } catch (e) {
+        console.error('Erreur chargement membres:', e);
+      }
+    });
+
+    function loadSelectedProfile(idStr) {
+      if (!idStr) return;
+      const id = parseInt(idStr, 10);
+      const member = membersList.find(m => m.id === id);
+      if (!member) return;
+
+      document.getElementById('selfMemberId').value = member.id;
+      document.getElementById('selfDisplayTitle').textContent = member.name;
+      document.getElementById('selfDisplayCompany').textContent = `${member.company} • ${member.role}`;
+      document.getElementById('selfDisplayBadge').textContent = member.badge || 'Membre';
+      document.getElementById('selfPreviewAvatar').src = member.image || '';
+
+      document.getElementById('selfPhone').value = member.phone || '';
+      document.getElementById('selfEmail').value = member.email || '';
+      document.getElementById('selfWebsite').value = member.website || '';
+      document.getElementById('selfInstagram').value = member.instagram || '';
+      document.getElementById('selfLinkedin').value = member.linkedin || '';
+
+      document.getElementById('selfImage').value = member.image || '';
+      document.getElementById('selfCoverImage').value = member.coverImage || '';
+
+      document.getElementById('selfMotto').value = member.motto || '';
+      document.getElementById('selfShortDesc').value = member.shortDesc || '';
+      document.getElementById('selfFullDesc').value = member.fullDesc || '';
+
+      const serv = member.services || [];
+      document.getElementById('selfService1').value = serv[0] || '';
+      document.getElementById('selfService2').value = serv[1] || '';
+      document.getElementById('selfService3').value = serv[2] || '';
+      document.getElementById('selfService4').value = serv[3] || '';
+
+      document.getElementById('memberSelfEditForm').classList.remove('hidden');
+      document.getElementById('memberSelfEditForm').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function submitSelfEdit(e) {
+      e.preventDefault();
+      const id = document.getElementById('selfMemberId').value;
+      const original = membersList.find(m => m.id === parseInt(id, 10)) || {};
+
+      const services = [
+        document.getElementById('selfService1').value.trim(),
+        document.getElementById('selfService2').value.trim(),
+        document.getElementById('selfService3').value.trim(),
+        document.getElementById('selfService4').value.trim()
+      ].filter(s => s.length > 0);
+
+      const payload = {
+        ...original,
+        phone: document.getElementById('selfPhone').value.trim(),
+        email: document.getElementById('selfEmail').value.trim(),
+        website: document.getElementById('selfWebsite').value.trim(),
+        instagram: document.getElementById('selfInstagram').value.trim(),
+        linkedin: document.getElementById('selfLinkedin').value.trim(),
+        image: document.getElementById('selfImage').value.trim(),
+        coverImage: document.getElementById('selfCoverImage').value.trim(),
+        motto: document.getElementById('selfMotto').value.trim(),
+        shortDesc: document.getElementById('selfShortDesc').value.trim(),
+        fullDesc: document.getElementById('selfFullDesc').value.trim(),
+        services: services
+      };
+
+      try {
+        const res = await fetch(`/api/members/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          const feedback = document.getElementById('saveFeedback');
+          feedback.classList.remove('hidden');
+          feedback.scrollIntoView({ behavior: 'smooth' });
+          setTimeout(() => feedback.classList.add('hidden'), 8000);
+        } else {
+          alert('Erreur lors de la mise à jour.');
+        }
+      } catch (err) {
+        alert('Erreur de connexion au serveur.');
+      }
+    }
+  </script>
+</body>
+</html>
