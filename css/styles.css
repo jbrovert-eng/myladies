@@ -1,0 +1,191 @@
+/* ==========================================================================
+   Myladies Ecquedecques - Styles Personnalisés & Ambiance Cabaret Chic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --color-cream: #F7F3EE;
+  --color-cream-light: #FDFBF8;
+  --color-bordeaux: #7B1E26;
+  --color-bordeaux-dark: #4D1016;
+  --color-bordeaux-deep: #320A0E;
+  --color-gold: #C59B27;
+  --color-gold-light: #E3BC4C;
+  --color-gold-hover: #AD851F;
+  --color-peacock: #1D6F72;
+  --color-peacock-dark: #124C4F;
+  --color-peacock-light: #2A9397;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: #2D2825;
+}
+
+/* Typographie spécifique */
+.font-serif-title {
+  font-family: var(--font-serif);
+}
+
+.font-sans-body {
+  font-family: var(--font-sans);
+}
+
+/* Liserés et reflets dorés */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #ECC869 0%, #C59B27 50%, #9D7514 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bordeaux-gradient {
+  background: linear-gradient(145deg, #7B1E26 0%, #58131A 60%, #3B0A0E 100%);
+}
+
+.peacock-gradient {
+  background: linear-gradient(145deg, #1D6F72 0%, #155558 70%, #0F3B3D 100%);
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #E8C35A 0%, #C59B27 60%, #A67E18 100%);
+}
+
+.card-shadow-chic {
+  box-shadow: 0 10px 30px -10px rgba(123, 30, 38, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.card-shadow-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-shadow-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -10px rgba(123, 30, 38, 0.2), 0 0 0 1px rgba(197, 155, 39, 0.45);
+}
+
+/* Liseré or subtil */
+.border-gold-subtle {
+  border-color: rgba(197, 155, 39, 0.3);
+}
+
+.border-gold-glow {
+  box-shadow: 0 0 0 1px rgba(197, 155, 39, 0.4), 0 0 18px rgba(197, 155, 39, 0.15);
+}
+
+/* Motifs cabaret / ornement art-déco rétro chic */
+.cabaret-pattern {
+  background-color: #F7F3EE;
+  background-image: radial-gradient(rgba(197, 155, 39, 0.18) 1px, transparent 1px), radial-gradient(rgba(123, 30, 38, 0.08) 1px, #F7F3EE 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+.cabaret-pattern-dark {
+  background-color: #4D1016;
+  background-image: radial-gradient(rgba(197, 155, 39, 0.25) 1.2px, transparent 1.2px);
+  background-size: 32px 32px;
+}
+
+/* Effet Shimmer / Reflet animé pour boutons prestigieux */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.8s ease-in-out;
+}
+
+.btn-shimmer:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
+
+/* Badge prestige */
+.badge-gold {
+  background: linear-gradient(135deg, rgba(197, 155, 39, 0.15) 0%, rgba(197, 155, 39, 0.05) 100%);
+  border: 1px solid rgba(197, 155, 39, 0.4);
+  color: #8C6A12;
+}
+
+.badge-bordeaux {
+  background: linear-gradient(135deg, rgba(123, 30, 38, 0.12) 0%, rgba(123, 30, 38, 0.04) 100%);
+  border: 1px solid rgba(123, 30, 38, 0.3);
+  color: #7B1E26;
+}
+
+.badge-peacock {
+  background: linear-gradient(135deg, rgba(29, 111, 114, 0.15) 0%, rgba(29, 111, 114, 0.05) 100%);
+  border: 1px solid rgba(29, 111, 114, 0.35);
+  color: #1D6F72;
+}
+
+/* Animations au scroll */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modale backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+  background-color: rgba(30, 10, 14, 0.75);
+}
+
+/* Scrollbar raffinée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F3EE;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C59B27;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7B1E26;
+}
+
+/* Ligne ornementale Cabaret */
+.cabaret-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.cabaret-divider::before,
+.cabaret-divider::after {
+  content: "";
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 155, 39, 0.7), transparent);
+  flex: 1;
+  max-width: 140px;
+}

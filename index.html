@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myladies Ecquedecques | Club d'affaires & Réseau de femmes entrepreneures dans le Pas-de-Calais</title>
+  <meta name="description" content="Myladies Ecquedecques : club d'affaires chic, chaleureux et rétro pour femmes entrepreneures dans le Pas-de-Calais. Principe 1 métier = 1 membre, ventes privées d'exception au Domaine d'Hélant et entraide locale.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo/logo.png">
+
+  <!-- Tailwind CSS via CDN avec configuration personnalisée -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: {
+              DEFAULT: '#F7F3EE',
+              light: '#FDFBF8',
+              dark: '#ECE5DA'
+            },
+            bordeaux: {
+              DEFAULT: '#7B1E26',
+              light: '#932730',
+              dark: '#4D1016',
+              deep: '#320A0E'
+            },
+            gold: {
+              DEFAULT: '#C59B27',
+              light: '#E3BC4C',
+              hover: '#AD851F',
+              soft: '#F4E8C1'
+            },
+            peacock: {
+              DEFAULT: '#1D6F72',
+              light: '#2A9397',
+              dark: '#124C4F',
+              night: '#0B2F31'
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Feuille de style personnalisée -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-cream text-stone-800 antialiased font-sans selection:bg-bordeaux selection:text-gold-light">
+
+  <!-- ========================================================================
+       BARRE SUPÉRIEURE D'ANNONCE
+       ======================================================================== -->
+  <div class="bg-bordeaux-dark text-stone-200 text-xs py-2 px-4 border-b border-gold/30">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+        <span class="font-medium tracking-wide">
+          Prochaine Vente Privée : <strong class="text-gold-light font-semibold">Domaine d'Hélant à Ecquedecques</strong>
+        </span>
+      </div>
+      <div class="flex items-center gap-4 text-stone-300">
+        <span class="hidden md:inline-flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+          Ecquedecques • Béthune • Lillers • Pas-de-Calais
+        </span>
+        <span class="text-gold">✦</span>
+        <a href="#recrutement" class="hover:text-gold-light transition underline underline-offset-2">1 métier = 1 membre</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       NAVBAR STICKY
+       ======================================================================== -->
+  <header id="mainNavbar" class="sticky top-0 z-50 transition-all duration-300 bg-bordeaux/95 backdrop-blur-md shadow-lg border-b border-gold/30 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between">
+        
+        <!-- Logo & Titre de l'association -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="relative w-12 h-14 sm:w-14 sm:h-16 flex items-center justify-center p-1 rounded-xl bg-cream-light/95 shadow-md border border-gold transition-transform group-hover:scale-105 duration-300">
+            <img 
+              src="logo/logo.png" 
+              alt="Logo Myladies Ecquedecques" 
+              class="w-full h-full object-contain"
+              onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+            />
+            <div class="hidden text-bordeaux font-serif font-black text-xl">M</div>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-serif font-bold text-xl sm:text-2xl text-cream tracking-wide group-hover:text-gold-light transition">
+              Myladies
+            </span>
+            <span class="text-[10px] sm:text-xs tracking-widest uppercase font-semibold text-gold-light">
+              Ecquedecques • Club d'Affaires
+            </span>
+          </div>
+        </a>
+
+        <!-- Liens d'ancrage Desktop -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#reseau" class="text-sm font-medium text-cream hover:text-gold-light transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gold hover:after:w-full after:transition-all">
+            Le Réseau
+          </a>
+          <a href="#membres" class="text-sm font-medium text-cream hover:text-gold-light transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gold hover:after:w-full after:transition-all">
+            Nos Membres
+          </a>
+          <a href="#evenements" class="text-sm font-medium text-cream hover:text-gold-light transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gold hover:after:w-full after:transition-all">
+            Événements
+          </a>
+          <a href="#recrutement" class="text-sm font-medium text-cream hover:text-gold-light transition relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gold hover:after:w-full after:transition-all">
+            Nous Rejoindre
+          </a>
+        </nav>
+
+        <!-- CTA "Devenir membre" & Menu Mobile -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          <a 
+            href="#recrutement" 
+            class="btn-shimmer inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full gold-gradient-bg text-bordeaux-dark font-bold text-xs sm:text-sm tracking-wider uppercase shadow-lg shadow-gold/20 hover:shadow-gold/40 hover:scale-105 transition-all duration-300 border border-gold-light"
+          >
+            <span>Devenir membre</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+
+          <!-- Bouton Hamburger mobile -->
+          <button 
+            id="mobileToggle" 
+            type="button" 
+            class="md:hidden p-2 rounded-lg text-cream hover:text-gold hover:bg-bordeaux-dark focus:outline-none"
+            aria-label="Ouvrir le menu de navigation"
+            aria-expanded="false"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Menu Mobile dépliant -->
+      <div id="mobileMenu" class="hidden md:hidden pt-4 pb-3 border-t border-gold/20 mt-3 space-y-2">
+        <a href="#reseau" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium text-cream hover:bg-bordeaux-dark hover:text-gold-light">Le Réseau</a>
+        <a href="#membres" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium text-cream hover:bg-bordeaux-dark hover:text-gold-light">Nos Membres</a>
+        <a href="#evenements" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium text-cream hover:bg-bordeaux-dark hover:text-gold-light">Événements & Ventes Privées</a>
+        <a href="#recrutement" class="mobile-nav-link block px-3 py-2 rounded-lg text-base font-medium text-cream hover:bg-bordeaux-dark hover:text-gold-light">Nous Rejoindre</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO SECTION : UNIVERS CHIC & CABARET
+       ======================================================================== -->
+  <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bordeaux-gradient py-20 px-4 sm:px-6 lg:px-8">
+    <!-- Texture d'ambiance rétro chic -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#E3BC4C_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    
+    <!-- Halos dorés et paon pour relief de scène cabaret -->
+    <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-gold/15 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-[30rem] h-[30rem] rounded-full bg-peacock/25 blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Contenu texte à gauche -->
+      <div class="lg:col-span-7 text-center lg:text-left space-y-6 reveal-on-scroll">
+        
+        <!-- Badge 1 métier = 1 membre -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-gold/40 text-gold-light text-xs sm:text-sm font-semibold shadow-inner">
+          <span class="text-gold">✦</span>
+          <span>1 Métier = 1 Membre • Exclusivité Garantie</span>
+          <span class="text-gold">✦</span>
+        </div>
+
+        <!-- Titre Playfair Display -->
+        <h1 class="font-serif-title text-4xl sm:text-5xl lg:text-6xl font-extrabold text-cream leading-tight sm:leading-tight">
+          L'audace au féminin, l'élégance du collectif en <span class="gold-gradient-text italic font-normal">Artois</span>.
+        </h1>
+
+        <!-- Sous-titre -->
+        <p class="text-stone-200 text-base sm:text-lg lg:text-xl font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+          Bienvenue chez <strong class="text-gold-light font-semibold">Myladies Ecquedecques</strong> : le club d'affaires qui allie sororité professionnelle, recommandations chaleureuses et événements d'exception pour les cheffes d'entreprise du Pas-de-Calais.
+        </p>
+
+        <!-- Boutons d'action -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <a 
+            href="#membres" 
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full gold-gradient-bg text-bordeaux-dark font-bold text-sm tracking-wider uppercase shadow-xl hover:shadow-gold/30 hover:scale-105 transition-all duration-300"
+          >
+            <svg class="w-4 h-4 text-bordeaux-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            <span>Explorer l'annuaire</span>
+          </a>
+
+          <a 
+            href="#recrutement" 
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-cream border border-gold/40 font-semibold text-sm tracking-wide transition-all backdrop-blur-sm"
+          >
+            <span>Participer à une réunion</span>
+            <svg class="w-4 h-4 text-gold-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </a>
+        </div>
+
+        <!-- Chiffres clés / Réassurance -->
+        <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gold/20 text-cream">
+          <div class="p-2">
+            <div class="font-serif-title text-2xl sm:text-3xl font-bold text-gold-light">100%</div>
+            <div class="text-xs text-stone-300 mt-1">Sororité & Confiance</div>
+          </div>
+          <div class="p-2">
+            <div class="font-serif-title text-2xl sm:text-3xl font-bold text-gold-light">1 seule</div>
+            <div class="text-xs text-stone-300 mt-1">Membre par métier</div>
+          </div>
+          <div class="p-2">
+            <div class="font-serif-title text-2xl sm:text-3xl font-bold text-gold-light">+15</div>
+            <div class="text-xs text-stone-300 mt-1">Événements par an</div>
+          </div>
+          <div class="p-2">
+            <div class="font-serif-title text-2xl sm:text-3xl font-bold text-gold-light">62</div>
+            <div class="text-xs text-stone-300 mt-1">Ancrage Pas-de-Calais</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Carte visuelle Hero à droite (Ambiance Domaine d'Hélant & Cabaret) -->
+      <div class="lg:col-span-5 reveal-on-scroll">
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          
+          <!-- Cadre doré avec effet rétro-chic -->
+          <div class="relative rounded-3xl p-3 bg-gradient-to-b from-gold/50 via-gold/20 to-gold/60 shadow-2xl backdrop-blur-md">
+            <div class="relative rounded-2xl overflow-hidden bg-bordeaux-dark">
+              <img 
+                src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80" 
+                alt="Ambiance Vente Privée Domaine d'Hélant Ecquedecques" 
+                class="w-full h-80 sm:h-96 object-cover object-center filter brightness-95 contrast-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-bordeaux-deep via-transparent to-black/30"></div>
+
+              <!-- Badge en superposition -->
+              <div class="absolute top-4 right-4 bg-bordeaux/90 backdrop-blur-md text-gold-light text-xs font-bold px-3 py-1.5 rounded-full border border-gold/40 shadow-lg flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-gold animate-ping"></span>
+                <span>Événement Phare</span>
+              </div>
+
+              <!-- Bloc info Domaine d'Hélant -->
+              <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-bordeaux-dark/90 backdrop-blur-md border border-gold/30 text-white">
+                <div class="flex items-center justify-between text-xs text-gold-light mb-1">
+                  <span class="font-semibold uppercase tracking-wider">Vente Privée de Prestige</span>
+                  <span>Ecquedecques</span>
+                </div>
+                <h2 class="font-serif-title text-lg font-bold text-cream">Au Domaine d'Hélant</h2>
+                <p class="text-xs text-stone-300 mt-1 line-clamp-2">
+                  Créatrices, dégustations, ambiance cabaret & acoustique dans un cadre d'exception.
+                </p>
+                <div class="mt-3 flex items-center justify-between pt-2 border-t border-white/10 text-xs">
+                  <span class="text-stone-300">Entrée libre sur invitation</span>
+                  <a href="#evenements" class="text-gold-light font-bold hover:underline flex items-center gap-1">
+                    En savoir plus <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pastille décorative flottante -->
+          <div class="absolute -bottom-6 -left-6 hidden sm:flex items-center gap-3 p-4 rounded-2xl bg-cream-light shadow-2xl border border-gold text-bordeaux-dark">
+            <div class="w-12 h-12 rounded-xl bg-bordeaux text-gold-light flex items-center justify-center font-serif font-black text-xl shadow">
+              M
+            </div>
+            <div>
+              <div class="font-serif-title font-bold text-sm">Réseau 100% Féminin</div>
+              <div class="text-xs text-stone-600">Entraide & Affaires locales</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION : LE RÉSEAU & NOTRE PHILOSOPHIE
+       ======================================================================== -->
+  <section id="reseau" class="py-24 px-4 sm:px-6 lg:px-8 bg-cream cabaret-pattern">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- En-tête de section -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-bordeaux text-xs font-bold uppercase tracking-widest mb-3">
+          <span>✦ Le Club Myladies ✦</span>
+        </div>
+        <h2 class="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-bordeaux-dark leading-tight">
+          L'alliance du chic, du partage et de la réussite locale
+        </h2>
+        <div class="cabaret-divider my-4">
+          <span class="text-gold text-lg">✦</span>
+        </div>
+        <p class="text-stone-700 text-base sm:text-lg leading-relaxed">
+          Fondé à <strong>Ecquedecques</strong>, Myladies réunit des cheffes d'entreprise passionnées qui partagent l'amour du travail bien fait, le goût des beaux rendez-vous et la volonté farouche de faire grandir l'économie du Pas-de-Calais.
+        </p>
+      </div>
+
+      <!-- Les 4 Piliers Fondamentaux -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Pilier 1 : 1 Métier = 1 Membre -->
+        <div class="p-8 rounded-2xl bg-white border border-stone-200 card-shadow-chic card-shadow-hover transition duration-300 flex flex-col justify-between reveal-on-scroll">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-bordeaux/10 text-bordeaux flex items-center justify-center mb-6">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </div>
+            <h3 class="font-serif-title text-xl font-bold text-bordeaux-dark mb-3">1 Métier = 1 Membre</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">
+              Zéro concurrence interne. Chaque membre dispose de l'exclusivité absolue de son domaine, devenant l'ambassadrice unique recommandée par toutes les autres.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-100 text-xs font-semibold text-gold-hover">
+            Confiance & Synergie totale →
+          </div>
+        </div>
+
+        <!-- Pilier 2 : Événements & Ventes Privées -->
+        <div class="p-8 rounded-2xl bg-white border border-stone-200 card-shadow-chic card-shadow-hover transition duration-300 flex flex-col justify-between reveal-on-scroll">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-gold/15 text-gold-hover flex items-center justify-center mb-6">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+            </div>
+            <h3 class="font-serif-title text-xl font-bold text-bordeaux-dark mb-3">Événements d'Exception</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">
+              Ventes privées prestigieuses au Domaine d'Hélant, soirées cabaret, défilés et dégustations. Nous offrons une visibilité élégante à chaque savoir-faire.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-100 text-xs font-semibold text-gold-hover">
+            Prestige & Rayonnement →
+          </div>
+        </div>
+
+        <!-- Pilier 3 : Entraide & Sororité -->
+        <div class="p-8 rounded-2xl bg-white border border-stone-200 card-shadow-chic card-shadow-hover transition duration-300 flex flex-col justify-between reveal-on-scroll">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-peacock/10 text-peacock flex items-center justify-center mb-6">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </div>
+            <h3 class="font-serif-title text-xl font-bold text-bordeaux-dark mb-3">Sororité Active</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">
+              Briser la solitude de la dirigeante. Partage sincère des défis, co-développement, soutien moral et célébration collective de chaque réussite.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-100 text-xs font-semibold text-gold-hover">
+            Bienveillance inconditionnelle →
+          </div>
+        </div>
+
+        <!-- Pilier 4 : Ancrage Pas-de-Calais -->
+        <div class="p-8 rounded-2xl bg-white border border-stone-200 card-shadow-chic card-shadow-hover transition duration-300 flex flex-col justify-between reveal-on-scroll">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-bordeaux-dark/10 text-bordeaux-dark flex items-center justify-center mb-6">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            </div>
+            <h3 class="font-serif-title text-xl font-bold text-bordeaux-dark mb-3">Ancrage Territorial</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">
+              Un réseau résolument ancré dans le Pas-de-Calais : Ecquedecques, le bassin de Béthune, Lillers, l'Artois et les Flandres du Sud.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-100 text-xs font-semibold text-gold-hover">
+            Économie circulaire locale →
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION : ANNUAIRE INTERACTIF DES MEMBRES
+       ======================================================================== -->
+  <section id="membres" class="py-24 px-4 sm:px-6 lg:px-8 bg-cream-light border-y border-stone-200/80">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- En-tête -->
+      <div class="text-center max-w-3xl mx-auto mb-12 reveal-on-scroll">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-peacock text-xs font-bold uppercase tracking-widest mb-3">
+          <span>✦ Annuaire Officiel ✦</span>
+        </div>
+        <h2 class="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-bordeaux-dark leading-tight">
+          Nos Membres & Ambassadrices
+        </h2>
+        <div class="cabaret-divider my-4">
+          <span class="text-gold text-lg">✦</span>
+        </div>
+        <p class="text-stone-600 text-base sm:text-lg">
+          Découvrez les professionnelles de confiance qui composent le réseau Myladies. Cliquez sur une fiche pour découvrir son parcours, ses prestations et ses coordonnées.
+        </p>
+      </div>
+
+      <!-- Barre d'outils interactive : Recherche & Filtres de catégories -->
+      <div class="mb-10 space-y-6 reveal-on-scroll">
+        
+        <!-- Filtres par catégorie sous forme de pilules élégantes -->
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+          <button 
+            type="button" 
+            data-category="Tous"
+            class="category-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 border bg-[#7B1E26] text-white border-[#C59B27] shadow-md"
+          >
+            Tous les métiers
+          </button>
+          <button 
+            type="button" 
+            data-category="Bien-être"
+            class="category-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 border bg-white text-stone-700 border-stone-200 hover:border-[#C59B27]"
+          >
+            Bien-être & Santé
+          </button>
+          <button 
+            type="button" 
+            data-category="Artisanat"
+            class="category-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 border bg-white text-stone-700 border-stone-200 hover:border-[#C59B27]"
+          >
+            Artisanat & Création
+          </button>
+          <button 
+            type="button" 
+            data-category="Services"
+            class="category-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 border bg-white text-stone-700 border-stone-200 hover:border-[#C59B27]"
+          >
+            Services & Conseil
+          </button>
+          <button 
+            type="button" 
+            data-category="Commerce"
+            class="category-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-300 border bg-white text-stone-700 border-stone-200 hover:border-[#C59B27]"
+          >
+            Commerce & Terroir
+          </button>
+        </div>
+
+        <!-- Barre de recherche textuelle et compteur -->
+        <div class="max-w-xl mx-auto flex flex-col sm:flex-row items-center gap-4">
+          <div class="relative w-full">
+            <input 
+              id="memberSearchInput" 
+              type="text" 
+              placeholder="Rechercher par nom, métier, entreprise ou ville..." 
+              class="w-full pl-11 pr-4 py-3 rounded-full bg-white border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm text-stone-800 shadow-sm placeholder:text-stone-400 outline-none transition"
+            />
+            <svg class="w-5 h-5 text-stone-400 absolute left-4 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+          <div id="membersCount" class="text-xs font-semibold text-stone-500 uppercase tracking-wider shrink-0 bg-stone-100 px-4 py-3 rounded-full border border-stone-200">
+            8 membres
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Grille 3 colonnes Desktop des membres -->
+      <div id="membersGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 reveal-on-scroll">
+        <!-- Rendu dynamique via JS avec les 8 profils détaillés -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MODALE DE DÉTAIL MEMBRE (ACCESSIBLE & FLUIDE)
+       ======================================================================== -->
+  <div id="memberModal" class="hidden fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div id="modalBackdrop" class="fixed inset-0 modal-backdrop transition-opacity"></div>
+    <div class="min-h-screen px-4 text-center flex items-center justify-center py-8">
+      <div 
+        id="memberModalContainer" 
+        class="inline-block w-full max-w-2xl bg-white rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all align-middle relative border border-gold/40"
+      >
+        <div id="memberModalContent">
+          <!-- Contenu injecté dynamiquement par openMemberModal() -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SECTION : ÉVÉNEMENTS & VENTES PRIVÉES (DOMAINE D'HÉLANT)
+       ======================================================================== -->
+  <section id="evenements" class="py-24 px-4 sm:px-6 lg:px-8 bg-bordeaux-dark text-white relative overflow-hidden">
+    <!-- Décorations cabaret chic -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#E3BC4C_1.5px,transparent_1.5px)] [background-size:32px_32px]"></div>
+    <div class="absolute -top-40 right-0 w-96 h-96 bg-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto space-y-16">
+      
+      <!-- En-tête -->
+      <div class="text-center max-w-3xl mx-auto reveal-on-scroll">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-gold text-xs font-bold uppercase tracking-widest mb-3">
+          <span>✦ Agenda & Événements ✦</span>
+        </div>
+        <h2 class="font-serif-title text-3xl sm:text-4xl lg:text-5xl font-extrabold text-cream leading-tight">
+          Les Ventes Privées & Rencontres d'Exception
+        </h2>
+        <div class="cabaret-divider my-4">
+          <span class="text-gold text-lg">✦</span>
+        </div>
+        <p class="text-stone-300 text-base sm:text-lg">
+          Myladies ne se contente pas de réseauteur : nous créons des événements vivants, élégants et fédérateurs où le public et les professionnels se rencontrent dans des lieux emblématiques.
+        </p>
+      </div>
+
+      <!-- CARTE PHARE : VENTE PRIVÉE AU DOMAINE D'HÉLANT (ECQUEDECQUES) -->
+      <div class="rounded-3xl border-2 border-gold/60 p-6 sm:p-10 bg-gradient-to-br from-bordeaux via-bordeaux-deep to-black/80 shadow-2xl relative overflow-hidden reveal-on-scroll">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Image du Domaine d'Hélant -->
+          <div class="lg:col-span-6 relative rounded-2xl overflow-hidden shadow-2xl border border-gold/40 group">
+            <img 
+              src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80" 
+              alt="Domaine d'Hélant Ecquedecques" 
+              class="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-bordeaux-deep via-black/30 to-transparent"></div>
+            
+            <div class="absolute top-4 left-4 bg-bordeaux/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-gold/40 text-gold-light text-xs font-bold uppercase tracking-wider">
+              ✦ Lieu emblématique
+            </div>
+
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="text-xs uppercase tracking-widest text-gold-light font-bold">Ecquedecques (Pas-de-Calais)</span>
+              <h3 class="font-serif-title text-2xl font-bold text-cream">Le Domaine d'Hélant</h3>
+              <p class="text-xs text-stone-200 mt-1">Parc boisé centenaire & salon de réception de caractère</p>
+            </div>
+          </div>
+
+          <!-- Description & Compte à rebours de l'événement -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/20 text-gold-light text-xs font-semibold border border-gold/40">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+              <span>Édition de Printemps • Entrée Libre sur Invitation</span>
+            </div>
+
+            <h3 class="font-serif-title text-2xl sm:text-3xl lg:text-4xl font-bold text-cream leading-tight">
+              Grande Vente Privée des Myladies au Domaine d'Hélant
+            </h3>
+
+            <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
+              Venez vivre une expérience shopping et découverte unique : créatrices locales, fleurs de saison, dégustations du terroir, joaillerie artisanale, conseils beauté et ambiance acoustique rétro cabaret dans l'écrin majestueux du <strong>Domaine d'Hélant à Ecquedecques</strong>.
+            </p>
+
+            <!-- Compte à rebours dynamique -->
+            <div>
+              <div class="text-xs uppercase tracking-wider text-gold-light font-bold mb-2">
+                Compte à rebours avant l'ouverture des portes :
+              </div>
+              <div class="grid grid-cols-4 gap-2 sm:gap-3 text-center">
+                <div class="p-3 rounded-xl bg-white/10 backdrop-blur-md border border-gold/30">
+                  <span id="cdDays" class="font-serif-title text-xl sm:text-2xl font-bold text-cream">24</span>
+                  <span class="block text-[10px] uppercase text-stone-300 mt-0.5">Jours</span>
+                </div>
+                <div class="p-3 rounded-xl bg-white/10 backdrop-blur-md border border-gold/30">
+                  <span id="cdHours" class="font-serif-title text-xl sm:text-2xl font-bold text-cream">14</span>
+                  <span class="block text-[10px] uppercase text-stone-300 mt-0.5">Heures</span>
+                </div>
+                <div class="p-3 rounded-xl bg-white/10 backdrop-blur-md border border-gold/30">
+                  <span id="cdMinutes" class="font-serif-title text-xl sm:text-2xl font-bold text-cream">30</span>
+                  <span class="block text-[10px] uppercase text-stone-300 mt-0.5">Minutes</span>
+                </div>
+                <div class="p-3 rounded-xl bg-white/10 backdrop-blur-md border border-gold/30">
+                  <span id="cdSeconds" class="font-serif-title text-xl sm:text-2xl font-bold text-gold-light">00</span>
+                  <span class="block text-[10px] uppercase text-stone-300 mt-0.5">Secondes</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Infos pratiques -->
+            <div class="pt-2 flex flex-wrap gap-4 text-xs text-stone-300">
+              <div class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                <span>Domaine d'Hélant, 62190 Ecquedecques</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                <span>10h00 - 18h30 (Cocktail d'inauguration à 11h30)</span>
+              </div>
+            </div>
+
+            <!-- CTA Invitation -->
+            <div class="pt-2">
+              <a 
+                href="#recrutement" 
+                class="btn-shimmer inline-flex items-center gap-2 px-6 py-3 rounded-full gold-gradient-bg text-bordeaux-dark font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg hover:shadow-gold/40 hover:scale-105 transition-all"
+              >
+                <span>Recevoir mon invitation VIP</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Calendrier des autres rendez-vous du club -->
+      <div class="grid md:grid-cols-3 gap-6 pt-4">
+        
+        <div class="p-6 rounded-2xl bg-white/5 border border-gold/30 backdrop-blur-sm hover:border-gold transition">
+          <div class="text-gold-light text-xs font-bold uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>Réseau mensuel</span>
+            <span class="px-2 py-0.5 rounded bg-gold/20 text-gold-light">1er Jeudi</span>
+          </div>
+          <h4 class="font-serif-title text-xl font-bold text-cream mb-2">Les Petits-Déjeuners Énergie</h4>
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed mb-4">
+            Tour de table convivial, pitchs d'affaires et échanges bienveillants pour démarrer le mois avec dynamisme.
+          </p>
+          <div class="text-xs text-gold flex items-center gap-1 font-semibold">
+            <span>8h30 - 10h00 • Béthune / Ecquedecques</span>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/5 border border-gold/30 backdrop-blur-sm hover:border-gold transition">
+          <div class="text-gold-light text-xs font-bold uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>Masterclass Pro</span>
+            <span class="px-2 py-0.5 rounded bg-gold/20 text-gold-light">Bimestriel</span>
+          </div>
+          <h4 class="font-serif-title text-xl font-bold text-cream mb-2">Ateliers Co-Développement</h4>
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed mb-4">
+            Une problématique d'entreprise analysée par le collectif : visibilité digitale, finances, pitch, équilibre de vie.
+          </p>
+          <div class="text-xs text-gold flex items-center gap-1 font-semibold">
+            <span>18h00 - 20h00 • Salle réservée</span>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white/5 border border-gold/30 backdrop-blur-sm hover:border-gold transition">
+          <div class="text-gold-light text-xs font-bold uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span>Gala Annuel</span>
+            <span class="px-2 py-0.5 rounded bg-gold/20 text-gold-light">Novembre</span>
+          </div>
+          <h4 class="font-serif-title text-xl font-bold text-cream mb-2">La Soirée Cabaret des Myladies</h4>
+          <p class="text-stone-300 text-xs sm:text-sm leading-relaxed mb-4">
+            La grande célébration de fin d'année : ambiance plumes & lampions, dîner gastronomique et remise des trophées.
+          </p>
+          <div class="text-xs text-gold flex items-center gap-1 font-semibold">
+            <span>Soirée privée • Domaine d'exception</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Galerie d'ambiance des événements -->
+      <div class="space-y-4 pt-6">
+        <div class="flex items-center justify-between">
+          <h3 class="font-serif-title text-xl font-bold text-cream">Aperçu galerie & moments partagés</h3>
+          <span class="text-xs text-gold-light font-medium">L'élégance en images</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="relative h-44 rounded-2xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80" alt="Moment convivial club Myladies" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-bordeaux/20 group-hover:bg-transparent transition"></div>
+          </div>
+          <div class="relative h-44 rounded-2xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Vente privée artisanale" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-bordeaux/20 group-hover:bg-transparent transition"></div>
+          </div>
+          <div class="relative h-44 rounded-2xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80" alt="Cocktail networking d'affaires" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-bordeaux/20 group-hover:bg-transparent transition"></div>
+          </div>
+          <div class="relative h-44 rounded-2xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" alt="Ambiance cabaret chic" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-bordeaux/20 group-hover:bg-transparent transition"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION : RECRUTEMENT / EXCLUSIVITÉ MÉTIER & FORMULAIRE
+       ======================================================================== -->
+  <section id="recrutement" class="py-24 px-4 sm:px-6 lg:px-8 bg-cream cabaret-pattern">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Colonne explications & secteurs ouverts à gauche -->
+        <div class="lg:col-span-5 space-y-8 reveal-on-scroll">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-bordeaux text-xs font-bold uppercase tracking-widest mb-3">
+              <span>✦ Nous Rejoindre ✦</span>
+            </div>
+            <h2 class="font-serif-title text-3xl sm:text-4xl font-extrabold text-bordeaux-dark leading-tight">
+              Prenez votre place au sein du club
+            </h2>
+            <div class="cabaret-divider my-4 !justify-start">
+              <span class="text-gold text-lg">✦</span>
+            </div>
+            <p class="text-stone-700 text-sm sm:text-base leading-relaxed">
+              Myladies fonctionne sur le principe d'<strong>exclusivité métier : 1 seule membre par spécialité</strong>. Si votre profession n'est pas encore représentée, c'est l'opportunité d'en devenir l'ambassadrice unique recommandée par l'ensemble du réseau !
+            </p>
+          </div>
+
+          <!-- Encadré "Pourquoi nous rejoindre ?" -->
+          <div class="p-6 rounded-2xl bg-white border border-stone-200 card-shadow-chic space-y-4">
+            <h3 class="font-serif-title text-lg font-bold text-bordeaux-dark flex items-center gap-2">
+              <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              <span>Ce que vous apporte Myladies</span>
+            </h3>
+            <ul class="space-y-3 text-xs sm:text-sm text-stone-600">
+              <li class="flex items-start gap-2.5">
+                <span class="text-gold font-bold">✓</span>
+                <span>Un flux régulier de recommandations qualifiées et bienveillantes.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-gold font-bold">✓</span>
+                <span>Une présence assurée lors des Ventes Privées au Domaine d'Hélant.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-gold font-bold">✓</span>
+                <span>Un cercle de pairs solides pour ne plus jamais vous sentir isolée.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-gold font-bold">✓</span>
+                <span>Une convivialité chic et décomplexée dans le Pas-de-Calais.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Métiers actuellement recherchés / Sièges disponibles -->
+          <div class="space-y-3">
+            <h3 class="font-serif-title text-base font-bold text-stone-900 flex items-center justify-between">
+              <span>Secteurs actuellement ouverts :</span>
+              <span class="text-xs text-bordeaux font-semibold uppercase">Sièges disponibles</span>
+            </h3>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Avocate / Juriste d'affaires
+              </span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Photographe d'entreprise
+              </span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Agent / Chasseresse immobilier
+              </span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Décoratrice d'intérieur
+              </span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Experte-Comptable
+              </span>
+              <span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                Webdesigner / Graphiste
+              </span>
+            </div>
+            <p class="text-xs text-stone-500 italic mt-1">
+              Votre spécialité ne figure pas dans cette liste ? N'hésitez pas à postuler, nous étudions chaque candidature.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Colonne formulaire de participation à droite -->
+        <div class="lg:col-span-7 reveal-on-scroll">
+          <div class="bg-white rounded-3xl p-6 sm:p-10 border border-gold/40 card-shadow-chic relative">
+            
+            <div class="mb-6">
+              <h3 class="font-serif-title text-2xl font-bold text-bordeaux-dark">
+                Demande de participation à une réunion découverte
+              </h3>
+              <p class="text-stone-600 text-xs sm:text-sm mt-1">
+                Venez découvrir l'ambiance du club lors d'un petit-déjeuner convivial sans engagement.
+              </p>
+            </div>
+
+            <!-- Message d'alerte statut après envoi -->
+            <div id="formStatusMessage" class="hidden mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-sm">
+              <div class="flex items-center gap-2 font-bold mb-1">
+                <svg class="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                <span>Demande envoyée avec succès !</span>
+              </div>
+              <p class="text-xs leading-relaxed text-emerald-800">
+                Merci pour votre intérêt envers <strong>Myladies Ecquedecques</strong>. Le bureau vérifie la disponibilité de votre métier et vous recontactera sous 48h pour confirmer votre invitation.
+              </p>
+            </div>
+
+            <form id="joinForm" class="space-y-4">
+              
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="firstName" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">Prénom *</label>
+                  <input type="text" id="firstName" name="firstName" required placeholder="Ex: Hélène" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm outline-none transition">
+                </div>
+                <div>
+                  <label for="lastName" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">Nom *</label>
+                  <input type="text" id="lastName" name="lastName" required placeholder="Ex: Dupont" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm outline-none transition">
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="companyName" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">Nom de l'entreprise *</label>
+                  <input type="text" id="companyName" name="companyName" required placeholder="Ex: Studio Lumina" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm outline-none transition">
+                </div>
+                <div>
+                  <label for="profession" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">Métier / Spécialité exacte *</label>
+                  <input type="text" id="profession" name="profession" required placeholder="Ex: Photographe corporate" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm outline-none transition">
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">Email professionnel *</label>
+                  <input type="email" id="email" name="email" required placeholder="helene@studiolumina.fr" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm outline-none transition">
+                </div>
+                <div>
+                  <label for="phone" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">Téléphone portable *</label>
+                  <input type="tel" id="phone" name="phone" required placeholder="06 00 00 00 00" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm outline-none transition">
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="city" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">Ville d'exercice (62) *</label>
+                  <input type="text" id="city" name="city" required placeholder="Ex: Béthune, Lillers, Saint-Omer..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm outline-none transition">
+                </div>
+                <div>
+                  <label for="meetingChoice" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">Date souhaitée pour la réunion</label>
+                  <select id="meetingChoice" name="meetingChoice" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm outline-none transition bg-white text-stone-700">
+                    <option value="next-thursday">Prochain Petit-déjeuner mensuel (8h30)</option>
+                    <option value="vente-privee">Invitation VIP Vente Privée Domaine d'Hélant</option>
+                    <option value="exchange-call">Échange téléphonique préalable avec le bureau</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="message" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-1">Présentez brièvement votre activité & vos motivations</label>
+                <textarea id="message" name="message" rows="3" placeholder="Parlez-nous de vous, de votre activité et de ce qui vous attire chez Myladies..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-gold focus:ring-2 focus:ring-gold/30 text-sm outline-none transition"></textarea>
+              </div>
+
+              <div class="flex items-start gap-2 pt-2">
+                <input type="checkbox" id="rgpdConsent" required class="mt-1 w-4 h-4 rounded text-bordeaux focus:ring-gold border-stone-300">
+                <label for="rgpdConsent" class="text-xs text-stone-600">
+                  J'accepte d'être recontactée par l'association Myladies Ecquedecques dans le cadre de ma candidature. Mes données ne seront jamais cédées.
+                </label>
+              </div>
+
+              <button 
+                type="submit" 
+                class="btn-shimmer w-full py-3.5 px-6 rounded-xl bg-bordeaux hover:bg-bordeaux-light text-cream font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg hover:shadow-bordeaux/30 transition-all duration-300 flex items-center justify-center gap-2 border border-gold/40 mt-4"
+              >
+                <span>Envoyer ma demande de participation</span>
+                <svg class="w-4 h-4 text-gold-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </button>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION : TÉMOIGNAGES DE NOS MEMBRES
+       ======================================================================== -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-cream-light border-t border-stone-200">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 reveal-on-scroll">
+        <h3 class="font-serif-title text-2xl sm:text-3xl font-bold text-bordeaux-dark">
+          La parole à nos cheffes d'entreprise
+        </h3>
+        <p class="text-stone-600 text-sm mt-1">L'énergie d'un groupe uni et solidaire au quotidien.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <div class="p-6 rounded-2xl bg-white border border-stone-200 card-shadow-chic flex flex-col justify-between reveal-on-scroll">
+          <p class="italic text-stone-700 text-sm leading-relaxed mb-6">
+            "Myladies a complètement transformé la visibilité de mon atelier. Participer à la Vente Privée au Domaine d'Hélant m'a permis de rencontrer mes plus fidèles clientes d'aujourd'hui."
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-stone-100">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Valérie D." class="w-10 h-10 rounded-full object-cover border-2 border-gold">
+            <div>
+              <div class="font-serif-title font-bold text-sm text-stone-900">Valérie Dumont</div>
+              <div class="text-xs text-stone-500">L'Atelier Floral d'Hélant • Ecquedecques</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-stone-200 card-shadow-chic flex flex-col justify-between reveal-on-scroll">
+          <p class="italic text-stone-700 text-sm leading-relaxed mb-6">
+            "L'exclusivité métier crée une atmosphère de sérénité absolue. On ne se regarde pas comme des concurrentes, mais comme de véritables alliées qui recommandent le meilleur."
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-stone-100">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=150&q=80" alt="Sophie B." class="w-10 h-10 rounded-full object-cover border-2 border-gold">
+            <div>
+              <div class="font-serif-title font-bold text-sm text-stone-900">Sophie Bernard</div>
+              <div class="text-xs text-stone-500">Capucine Studio • Aire-sur-la-Lys</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-stone-200 card-shadow-chic flex flex-col justify-between reveal-on-scroll">
+          <p class="italic text-stone-700 text-sm leading-relaxed mb-6">
+            "Entreprendre seule n'est pas simple. Rejoindre ce club m'a apporté à la fois un formidable réseau d'affaires et des amitiés solides. Et quel plaisir de se retrouver dans des lieux si élégants !"
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-stone-100">
+            <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=150&q=80" alt="Aurélie L." class="w-10 h-10 rounded-full object-cover border-2 border-gold">
+            <div>
+              <div class="font-serif-title font-bold text-sm text-stone-900">Aurélie Leclercq</div>
+              <div class="text-xs text-stone-500">Comptoir & Gourmandises • Lillers</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION : FAQ ACCORDÉON
+       ======================================================================== -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 bg-cream border-t border-stone-200">
+    <div class="max-w-4xl mx-auto">
+      
+      <div class="text-center mb-12">
+        <h3 class="font-serif-title text-2xl sm:text-3xl font-bold text-bordeaux-dark">
+          Questions Fréquentes sur le Club
+        </h3>
+        <p class="text-stone-600 text-sm mt-1">Tout ce que vous devez savoir avant de postuler.</p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <div class="faq-item bg-white rounded-2xl border border-stone-200 overflow-hidden card-shadow-chic">
+          <button type="button" class="faq-trigger w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none">
+            <span class="font-serif-title text-base sm:text-lg font-bold text-bordeaux-dark">
+              Comment fonctionne concrètement la règle "1 métier = 1 membre" ?
+            </span>
+            <svg class="faq-icon w-5 h-5 text-gold shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+            Dès qu'une membre est admise sur un domaine d'activité (ex: avocate, fleuriste, naturopathe), aucun autre profil exerçant ce même métier ne peut intégrer le club. Cela garantit l'absence totale de rivalité commerciale et incite chacune à recommander chaudement son ambassadrice exclusive auprès de ses clients et partenaires.
+          </div>
+        </div>
+
+        <div class="faq-item bg-white rounded-2xl border border-stone-200 overflow-hidden card-shadow-chic">
+          <button type="button" class="faq-trigger w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none">
+            <span class="font-serif-title text-base sm:text-lg font-bold text-bordeaux-dark">
+              Puis-je assister à une première réunion avant de m'engager ?
+            </span>
+            <svg class="faq-icon w-5 h-5 text-gold shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+            Absolument ! Nous vous invitons chaleureusement à participer à l'un de nos petits-déjeuners mensuels ou à notre prochaine Vente Privée au Domaine d'Hélant. C'est l'occasion idéale de ressentir l'alchimie du groupe, de présenter votre activité et de vérifier si l'esprit Myladies vous correspond.
+          </div>
+        </div>
+
+        <div class="faq-item bg-white rounded-2xl border border-stone-200 overflow-hidden card-shadow-chic">
+          <button type="button" class="faq-trigger w-full p-5 text-left flex items-center justify-between gap-4 focus:outline-none">
+            <span class="font-serif-title text-base sm:text-lg font-bold text-bordeaux-dark">
+              Quels sont les critères pour postuler ?
+            </span>
+            <svg class="faq-icon w-5 h-5 text-gold shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 text-stone-600 text-sm leading-relaxed border-t border-stone-100 pt-3">
+            Être une femme cheffe d'entreprise, artisane, commerçante ou profession libérale immatriculée, avec un ancrage d'activité dans le Pas-de-Calais (Ecquedecques, Béthune, Lillers et environs), exercer une profession non encore pourvue au club, et partager nos valeurs de bienveillance et d'entraide.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOOTER PRESTIGIEUX
+       ======================================================================== -->
+  <footer class="bg-bordeaux-deep text-stone-300 border-t-2 border-gold/40 pt-16 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-gold/20">
+        
+        <!-- Colonne 1 : Présentation & Logo -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-14 p-1 rounded-xl bg-white shadow-md border border-gold flex items-center justify-center">
+              <img src="logo/logo.png" alt="Myladies Logo" class="w-full h-full object-contain">
+            </div>
+            <div>
+              <span class="font-serif-title font-bold text-2xl text-cream block">Myladies</span>
+              <span class="text-xs uppercase tracking-widest text-gold-light font-semibold">Ecquedecques</span>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-stone-400 leading-relaxed">
+            Club d'affaires et réseau local de femmes entrepreneures dans le Pas-de-Calais. Entraide, sororité professionnelle et événements d'exception.
+          </p>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-gold/30 text-gold-light text-xs">
+            <span>✦ 1 Métier = 1 Membre</span>
+          </div>
+        </div>
+
+        <!-- Colonne 2 : Liens rapides -->
+        <div class="space-y-3">
+          <h4 class="font-serif-title text-base font-bold text-cream">Navigation</h4>
+          <ul class="space-y-2 text-xs sm:text-sm">
+            <li><a href="#reseau" class="hover:text-gold-light transition">Le Réseau & Concept</a></li>
+            <li><a href="#membres" class="hover:text-gold-light transition">Annuaire des Membres</a></li>
+            <li><a href="#evenements" class="hover:text-gold-light transition">Ventes Privées Domaine d'Hélant</a></li>
+            <li><a href="#recrutement" class="hover:text-gold-light transition">Postuler & Participer</a></li>
+          </ul>
+        </div>
+
+        <!-- Colonne 3 : Infos pratiques & Siège -->
+        <div class="space-y-3">
+          <h4 class="font-serif-title text-base font-bold text-cream">Ancrage Local</h4>
+          <div class="space-y-2 text-xs sm:text-sm text-stone-400">
+            <p class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-gold shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+              <span>Association Myladies<br>62190 Ecquedecques • Pas-de-Calais</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gold shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+              <span>contact@myladies-ecquedecques.fr</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Colonne 4 : Réseaux & Newsletter -->
+        <div class="space-y-3">
+          <h4 class="font-serif-title text-base font-bold text-cream">Suivre le Club</h4>
+          <p class="text-xs text-stone-400">
+            Restez informée des prochaines ventes privées et dates de réunions.
+          </p>
+          <div class="flex items-center gap-3 pt-1">
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-gold hover:text-bordeaux-dark flex items-center justify-center transition text-cream" aria-label="Instagram">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-gold hover:text-bordeaux-dark flex items-center justify-center transition text-cream" aria-label="LinkedIn">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 hover:bg-gold hover:text-bordeaux-dark flex items-center justify-center transition text-cream" aria-label="Facebook">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright & Mentions -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-4">
+        <div>
+          © 2026 <strong>Myladies Ecquedecques</strong>. Tous droits réservés.
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-gold-light transition">Mentions légales</a>
+          <span>•</span>
+          <a href="#" class="hover:text-gold-light transition">Politique de confidentialité</a>
+          <span>•</span>
+          <span class="text-gold-light">Fait avec passion dans le Pas-de-Calais</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Script applicatif -->
+  <script src="js/main.js"></script>
+</body>
+</html>

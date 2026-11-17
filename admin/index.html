@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myladies Ecquedecques | Back-Office d'Administration</title>
+  
+  <link rel="icon" type="image/png" href="../logo/logo.png">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: { DEFAULT: '#F7F3EE', light: '#FDFBF8' },
+            bordeaux: { DEFAULT: '#7B1E26', dark: '#4D1016', deep: '#320A0E' },
+            gold: { DEFAULT: '#C59B27', light: '#E3BC4C' },
+            peacock: { DEFAULT: '#1D6F72' }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', '-apple-system', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-cream font-sans text-stone-800 antialiased min-h-screen flex flex-col">
+
+  <!-- En-tête Back-office -->
+  <header class="bg-bordeaux text-cream border-b border-gold/40 shadow-lg sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5">
+          <div class="w-10 h-11 p-1 bg-white rounded-lg border border-gold flex items-center justify-center">
+            <img src="../logo/logo.png" alt="Myladies Logo" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <h1 class="font-serif font-bold text-lg text-cream leading-tight">Myladies Ecquedecques</h1>
+            <span class="text-[10px] uppercase tracking-widest text-gold-light font-bold">Espace Administration Bureau</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="/" target="_blank" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-cream transition flex items-center gap-1.5 border border-gold/30">
+          <svg class="w-3.5 h-3.5 text-gold-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          <span>Voir le site vitrine</span>
+        </a>
+        <button onclick="refreshData()" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-gold hover:bg-gold-light text-stone-900 transition flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          <span>Actualiser</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation par onglets -->
+  <div class="bg-white border-b border-stone-200 shadow-sm sticky top-[65px] z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-6 overflow-x-auto text-xs sm:text-sm font-semibold">
+      <button onclick="switchTab('dashboard')" id="tabBtn-dashboard" class="tab-button py-4 border-b-2 border-bordeaux text-bordeaux font-bold uppercase tracking-wider flex items-center gap-2">
+        <span>Tableau de bord</span>
+      </button>
+      <button onclick="switchTab('applications')" id="tabBtn-applications" class="tab-button py-4 border-b-2 border-transparent text-stone-500 hover:text-bordeaux font-bold uppercase tracking-wider flex items-center gap-2">
+        <span>Candidatures Reçues</span>
+        <span id="badgePendingApps" class="px-2 py-0.5 rounded-full text-[10px] bg-bordeaux text-white">0</span>
+      </button>
+      <button onclick="switchTab('members')" id="tabBtn-members" class="tab-button py-4 border-b-2 border-transparent text-stone-500 hover:text-bordeaux font-bold uppercase tracking-wider flex items-center gap-2">
+        <span>Gestion des Membres</span>
+        <span id="badgeTotalMembers" class="px-2 py-0.5 rounded-full text-[10px] bg-stone-100 text-stone-700">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Contenu Principal -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-8">
+
+    <!-- 1. VUE TABLEAU DE BORD -->
+    <section id="view-dashboard" class="space-y-8">
+      
+      <!-- Cartes de métriques -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-sm flex items-center justify-between">
+          <div>
+            <div class="text-xs uppercase font-bold text-stone-500 tracking-wider">Membres Actives</div>
+            <div id="statMembersCount" class="font-serif text-3xl font-bold text-bordeaux mt-1">--</div>
+            <div class="text-[11px] text-stone-400 mt-0.5">1 seule par métier</div>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-bordeaux/10 text-bordeaux flex items-center justify-center font-bold text-xl">
+            ✦
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-sm flex items-center justify-between">
+          <div>
+            <div class="text-xs uppercase font-bold text-stone-500 tracking-wider">Candidatures en attente</div>
+            <div id="statPendingApps" class="font-serif text-3xl font-bold text-gold-hover mt-1">--</div>
+            <div class="text-[11px] text-stone-400 mt-0.5">À étudier par le bureau</div>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-gold/15 text-gold-hover flex items-center justify-center font-bold text-xl">
+            ✉
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-sm flex items-center justify-between">
+          <div>
+            <div class="text-xs uppercase font-bold text-stone-500 tracking-wider">Vente Privée Phare</div>
+            <div class="font-serif text-lg font-bold text-peacock mt-1">Domaine d'Hélant</div>
+            <div class="text-[11px] text-stone-500 mt-0.5">Ecquedecques (62190)</div>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-peacock/10 text-peacock flex items-center justify-center font-bold text-xl">
+            🏰
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-stone-200 shadow-sm flex items-center justify-between">
+          <div>
+            <div class="text-xs uppercase font-bold text-stone-500 tracking-wider">Statut Exclusivité</div>
+            <div class="font-serif text-xl font-bold text-emerald-700 mt-1">100% Respecté</div>
+            <div class="text-[11px] text-stone-400 mt-0.5">Zéro concurrence interne</div>
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl">
+            ✓
+          </div>
+        </div>
+      </div>
+
+      <!-- Dernières candidatures reçues -->
+      <div class="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-serif text-xl font-bold text-bordeaux">Dernières demandes de réunion reçues</h2>
+          <button onclick="switchTab('applications')" class="text-xs font-bold text-bordeaux hover:underline">
+            Voir toutes les candidatures →
+          </button>
+        </div>
+        <div id="latestAppsList" class="divide-y divide-stone-100">
+          <!-- Dynamique -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 2. VUE GESTION DES CANDIDATURES -->
+    <section id="view-applications" class="hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif text-2xl font-bold text-bordeaux">Demandes de participation & Candidatures</h2>
+          <p class="text-xs text-stone-500">Gérez les demandes issues du formulaire en vérifiant la disponibilité de chaque métier.</p>
+        </div>
+      </div>
+
+      <!-- Tableau des candidatures -->
+      <div class="bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm">
+            <thead class="bg-stone-50 border-b border-stone-200 text-stone-500 uppercase tracking-wider text-[11px]">
+              <tr>
+                <th class="p-4">Date</th>
+                <th class="p-4">Candidate</th>
+                <th class="p-4">Entreprise & Métier</th>
+                <th class="p-4">Ville</th>
+                <th class="p-4">Vérif. Exclusivité</th>
+                <th class="p-4">Statut</th>
+                <th class="p-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="applicationsTableBody" class="divide-y divide-stone-100 text-stone-700">
+              <!-- Injecté via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. VUE GESTION DE L'ANNUAIRE DES MEMBRES -->
+    <section id="view-members" class="hidden space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif text-2xl font-bold text-bordeaux">Annuaire Officiel des Membres</h2>
+          <p class="text-xs text-stone-500">Ajoutez, modifiez ou retirez les cheffes d'entreprise du club.</p>
+        </div>
+        <button onclick="toggleAddMemberForm()" class="px-4 py-2.5 rounded-xl bg-bordeaux hover:bg-bordeaux-dark text-cream font-bold text-xs uppercase tracking-wider transition shadow flex items-center gap-2">
+          <span>+ Ajouter une nouvelle membre</span>
+        </button>
+      </div>
+
+      <!-- Formulaire d'ajout rapide (repliable) -->
+      <div id="addMemberFormContainer" class="hidden bg-white rounded-2xl border border-gold/40 shadow-lg p-6 space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+          <h3 class="font-serif text-lg font-bold text-bordeaux">Ajouter une nouvelle membre au club</h3>
+          <button onclick="toggleAddMemberForm()" class="text-stone-400 hover:text-stone-600">✕</button>
+        </div>
+
+        <form id="createMemberForm" onsubmit="submitNewMember(event)" class="space-y-4 text-xs">
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Nom & Prénom *</label>
+              <input type="text" id="mName" required class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: Valérie Dumont">
+            </div>
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Entreprise *</label>
+              <input type="text" id="mCompany" required class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: L'Atelier Floral d'Hélant">
+            </div>
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Métier / Rôle exclusif *</label>
+              <input type="text" id="mRole" required class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: Fleuriste Scénographe">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Catégorie *</label>
+              <select id="mCategory" required class="w-full p-2.5 rounded-lg border border-stone-300 bg-white">
+                <option value="Artisanat">Artisanat</option>
+                <option value="Bien-être">Bien-être</option>
+                <option value="Services">Services</option>
+                <option value="Commerce">Commerce</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Ville (Pas-de-Calais) *</label>
+              <input type="text" id="mCity" required class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: Ecquedecques">
+            </div>
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Badge d'honneur</label>
+              <input type="text" id="mBadge" class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Ex: Artisan d'Art">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Téléphone</label>
+              <input type="text" id="mPhone" class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="03 21 00 00 00">
+            </div>
+            <div>
+              <label class="block font-semibold text-stone-700 mb-1">Email</label>
+              <input type="email" id="mEmail" class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="contact@entreprise.fr">
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-semibold text-stone-700 mb-1">Courte description pour l'annuaire *</label>
+            <textarea id="mShortDesc" required rows="2" class="w-full p-2.5 rounded-lg border border-stone-300" placeholder="Présentation synthétique du savoir-faire..."></textarea>
+          </div>
+
+          <div class="flex justify-end gap-3 pt-2">
+            <button type="button" onclick="toggleAddMemberForm()" class="px-4 py-2 rounded-lg bg-stone-100 text-stone-700 font-semibold">Annuler</button>
+            <button type="submit" class="px-5 py-2 rounded-lg bg-bordeaux text-cream font-bold">Enregistrer la membre</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Grille des membres existants -->
+      <div id="adminMembersGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendu dynamique -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-white border-t border-stone-200 py-4 text-center text-xs text-stone-500">
+    Back-Office Myladies Ecquedecques • Système d'administration et exclusivité métier
+  </footer>
+
+  <!-- Script du Back-Office -->
+  <script>
+    let appData = { members: [], applications: [] };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      refreshData();
+    });
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('border-bordeaux', 'text-bordeaux');
+        btn.classList.add('border-transparent', 'text-stone-500');
+      });
+      const activeBtn = document.getElementById(`tabBtn-${tabName}`);
+      if (activeBtn) {
+        activeBtn.classList.add('border-bordeaux', 'text-bordeaux');
+        activeBtn.classList.remove('border-transparent', 'text-stone-500');
+      }
+
+      document.getElementById('view-dashboard').classList.add('hidden');
+      document.getElementById('view-applications').classList.add('hidden');
+      document.getElementById('view-members').classList.add('hidden');
+
+      const targetView = document.getElementById(`view-${tabName}`);
+      if (targetView) targetView.classList.remove('hidden');
+    }
+
+    async function refreshData() {
+      try {
+        const [statsRes, membersRes, appsRes] = await Promise.all([
+          fetch('/api/stats'),
+          fetch('/api/members'),
+          fetch('/api/applications')
+        ]);
+
+        const statsData = await statsRes.json();
+        const membersData = await membersRes.json();
+        const appsData = await appsRes.json();
+
+        appData.members = membersData.members || [];
+        appData.applications = appsData.applications || [];
+
+        // Rendu métriques
+        document.getElementById('statMembersCount').textContent = statsData.stats.totalMembers;
+        document.getElementById('statPendingApps').textContent = statsData.stats.pendingApplications;
+        document.getElementById('badgePendingApps').textContent = statsData.stats.pendingApplications;
+        document.getElementById('badgeTotalMembers').textContent = statsData.stats.totalMembers;
+
+        renderLatestApps();
+        renderApplicationsTable();
+        renderAdminMembers();
+      } catch (err) {
+        console.error('Erreur chargement données:', err);
+      }
+    }
+
+    function renderLatestApps() {
+      const container = document.getElementById('latestAppsList');
+      if (!container) return;
+
+      const latest = appData.applications.slice(0, 5);
+      if (latest.length === 0) {
+        container.innerHTML = '<div class="py-4 text-xs text-stone-500">Aucune candidature reçue pour le moment.</div>';
+        return;
+      }
+
+      container.innerHTML = latest.map(app => `
+        <div class="py-3 flex items-center justify-between gap-4 text-xs">
+          <div>
+            <strong class="text-stone-900">${app.firstName} ${app.lastName}</strong>
+            <span class="text-stone-500">(${app.companyName})</span>
+            <div class="text-stone-600 mt-0.5">Métier : <span class="font-semibold text-bordeaux">${app.profession}</span> • ${app.city}</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${
+              app.status === 'validé' ? 'bg-emerald-100 text-emerald-800' :
+              app.status === 'refusé' ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800'
+            }">
+              ${app.status.toUpperCase()}
+            </span>
+            <button onclick="switchTab('applications')" class="text-xs text-stone-600 hover:text-bordeaux font-bold">Consulter</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderApplicationsTable() {
+      const tbody = document.getElementById('applicationsTableBody');
+      if (!tbody) return;
+
+      if (appData.applications.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="p-6 text-center text-stone-500">Aucune candidature enregistrée.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = appData.applications.map(app => {
+        const dateStr = new Date(app.createdAt).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
+        return `
+          <tr class="hover:bg-stone-50 transition">
+            <td class="p-4 font-mono text-[11px] text-stone-500">${dateStr}</td>
+            <td class="p-4">
+              <div class="font-bold text-stone-900">${app.firstName} ${app.lastName}</div>
+              <div class="text-[11px] text-stone-500">${app.email} • ${app.phone}</div>
+            </td>
+            <td class="p-4">
+              <div class="font-semibold text-bordeaux">${app.profession}</div>
+              <div class="text-xs text-stone-600">${app.companyName}</div>
+            </td>
+            <td class="p-4 text-stone-600">${app.city}</td>
+            <td class="p-4">
+              <span class="text-[11px] px-2 py-1 rounded bg-stone-100 text-stone-700 border border-stone-200">
+                ${app.exclusivityAlert}
+              </span>
+            </td>
+            <td class="p-4">
+              <select onchange="updateAppStatus(${app.id}, this.value)" class="text-xs p-1.5 rounded-lg border border-stone-300 bg-white font-semibold">
+                <option value="nouveau" ${app.status === 'nouveau' ? 'selected' : ''}>Nouveau</option>
+                <option value="validé" ${app.status === 'validé' ? 'selected' : ''}>Validé (invitée)</option>
+                <option value="contacté" ${app.status === 'contacté' ? 'selected' : ''}>Contacté</option>
+                <option value="refusé" ${app.status === 'refusé' ? 'selected' : ''}>Refusé (conflit)</option>
+              </select>
+            </td>
+            <td class="p-4 text-right">
+              <button onclick="deleteApplication(${app.id})" class="text-rose-600 hover:text-rose-800 text-xs font-bold">
+                Supprimer
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function updateAppStatus(id, newStatus) {
+      try {
+        await fetch(`/api/applications/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: newStatus })
+        });
+        refreshData();
+      } catch (err) {
+        alert('Erreur mise à jour');
+      }
+    }
+
+    async function deleteApplication(id) {
+      if (!confirm('Supprimer définitivement cette candidature ?')) return;
+      try {
+        await fetch(`/api/applications/${id}`, { method: 'DELETE' });
+        refreshData();
+      } catch (err) {
+        alert('Erreur suppression');
+      }
+    }
+
+    function renderAdminMembers() {
+      const grid = document.getElementById('adminMembersGrid');
+      if (!grid) return;
+
+      grid.innerHTML = appData.members.map(m => `
+        <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm space-y-3 relative group">
+          <div class="flex items-center gap-3">
+            <img src="${m.image}" class="w-12 h-12 rounded-xl object-cover border border-gold" alt="${m.name}">
+            <div>
+              <h4 class="font-bold text-stone-900">${m.name}</h4>
+              <p class="text-xs text-bordeaux font-semibold">${m.company}</p>
+            </div>
+          </div>
+          <div class="text-xs text-stone-600">
+            <div><strong>Rôle exclusif :</strong> ${m.role}</div>
+            <div><strong>Ville :</strong> ${m.city} (${m.category})</div>
+          </div>
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-xs">
+            <span class="text-stone-400">ID #${m.id}</span>
+            <button onclick="deleteMember(${m.id})" class="text-rose-600 hover:text-rose-800 font-bold">
+              Retirer du club
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleAddMemberForm() {
+      const el = document.getElementById('addMemberFormContainer');
+      el.classList.toggle('hidden');
+    }
+
+    async function submitNewMember(e) {
+      e.preventDefault();
+      const payload = {
+        name: document.getElementById('mName').value,
+        company: document.getElementById('mCompany').value,
+        role: document.getElementById('mRole').value,
+        category: document.getElementById('mCategory').value,
+        city: document.getElementById('mCity').value,
+        badge: document.getElementById('mBadge').value || 'Membre Officielle',
+        phone: document.getElementById('mPhone').value,
+        email: document.getElementById('mEmail').value,
+        shortDesc: document.getElementById('mShortDesc').value
+      };
+
+      try {
+        const res = await fetch('/api/members', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert('Membre enregistrée avec succès !');
+          document.getElementById('createMemberForm').reset();
+          toggleAddMemberForm();
+          refreshData();
+        } else {
+          alert(data.message || 'Erreur lors de l\'enregistrement');
+        }
+      } catch (err) {
+        alert('Erreur réseau');
+      }
+    }
+
+    async function deleteMember(id) {
+      if (!confirm('Êtes-vous certaine de vouloir retirer cette membre du club ?')) return;
+      try {
+        await fetch(`/api/members/${id}`, { method: 'DELETE' });
+        refreshData();
+      } catch (err) {
+        alert('Erreur suppression');
+      }
+    }
+  </script>
+</body>
+</html>

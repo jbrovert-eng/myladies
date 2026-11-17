@@ -1,0 +1,17 @@
+{
+  "name": "myladies",
+  "version": "1.0.0",
+  "description": "Site vitrine moderne, élégant et interactif conçu pour l'association **Myladies Ecquedecques**, club d'affaires et réseau local de femmes entrepreneures dans le Pas-de-Calais (Ecquedecques, Béthune, Lillers, Saint-Omer et environs).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0"
+  }
+}
