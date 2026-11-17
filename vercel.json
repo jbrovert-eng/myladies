@@ -8,6 +8,14 @@
     {
       "source": "/admin",
       "destination": "/admin/index.html"
+    },
+    {
+      "source": "/espace-membre",
+      "destination": "/espace-membre.html"
+    },
+    {
+      "source": "/espace-membre.html",
+      "destination": "/espace-membre.html"
     }
   ]
 }

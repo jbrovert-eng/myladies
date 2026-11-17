@@ -60,8 +60,24 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+});
+
+app.get('/admin/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+});
+
+app.get('/espace-membre', (req, res) => {
+  res.sendFile(path.join(__dirname, 'espace-membre.html'));
+});
+
+app.get('/espace-membre.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'espace-membre.html'));
 });
 
 /* ==========================================================================
